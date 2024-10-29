@@ -1,14 +1,6 @@
 export default function MainLogo() {
   return (
-    <div
-      style={{
-        color: "black",
-        fontSize: 50,
-        fontFamily: "Gmarket Sans",
-        fontWeight: "400",
-        wordWrap: "break-word",
-      }}
-    >
+    <div className="text-black text-[50px] font-normal font-primary">
       Project: Meet
     </div>
   );
