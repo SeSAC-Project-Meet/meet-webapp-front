@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Gmarket Sans";
+  src: url("src/assets/fonts/GmarketSansMedium.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
