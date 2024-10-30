@@ -1,5 +1,5 @@
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
-import { LoginPage } from "./pages/MainPage/LoginPage";
+import { LoginPage } from "./pages/login/LoginPage";
 import { UserProvider } from "./contexts/UserContext";
 
 function App() {
