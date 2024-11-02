@@ -1,7 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-<<<<<<< HEAD
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
       colors: {
@@ -24,11 +23,6 @@ export default {
     fontFamily: {
       primary: ["Gmarket Sans", "sans-serif"],
     },
-=======
-  content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
-  theme: {
-    extend: {},
->>>>>>> develop/draft
   },
   plugins: [],
 };
