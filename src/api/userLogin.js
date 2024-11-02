@@ -1,9 +1,9 @@
 import axios from "axios";
-import { POST_USER_LOGIN } from "./config";
+import { USER_LOGIN } from "./config";
 import { setTokensToLocalStorage } from "../services/setTokensToLocalStorage";
 
 export const userLogin = async (loginID, password) => {
-  const response = await axios.post(POST_USER_LOGIN, {
+  const response = await axios.post(USER_LOGIN, {
     loginID: loginID,
     password: password,
   });

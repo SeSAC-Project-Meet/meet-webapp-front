@@ -1,18 +1,17 @@
-import { HashRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { LoginPage } from "./pages/login/LoginPage";
+import { RegisterPage } from "./pages/register/RegisterPage";
 import { UserProvider } from "./contexts/UserContext";
 
 function App() {
   return (
     <Router>
       <UserProvider>
-        <div>
-          <Routes>
-            <Route path="/" element={"ROOT"} />
-            <Route path="/login" element={<LoginPage />} />
-            {/* <Route path="/register" element={<RegisterPage />} /> */}
-          </Routes>
-        </div>
+        <Routes>
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/" element={"ROOT"} />
+          <Route path="/login" element={<LoginPage />} />
+        </Routes>
       </UserProvider>
     </Router>
   );
