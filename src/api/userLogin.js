@@ -1,6 +1,5 @@
 import axios from "axios";
 import { USER_LOGIN } from "./config";
-import { setTokensToLocalStorage } from "../services/setTokensToLocalStorage";
 
 export const userLogin = async (loginID, password) => {
   const response = await axios.post(USER_LOGIN, {
@@ -8,12 +7,14 @@ export const userLogin = async (loginID, password) => {
     password: password,
   });
 
-  const { accessToken, refreshToken } = response.data;
-  setTokensToLocalStorage(accessToken, refreshToken);
+  // const { accessToken, refreshToken } = response.data;
+  // setTokensToLocalStorage(accessToken, refreshToken);
 
-  console.log(`accessToken: ${accessToken}, refreshToken: ${refreshToken}`);
+  // console.log(`accessToken: ${accessToken}, refreshToken: ${refreshToken}`);
+  console.log("response : ", response.data);
+  const { username } = response.data.user;
 
-  return true;
+  return username;
 };
 
 /*

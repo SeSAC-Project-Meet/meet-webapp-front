@@ -10,7 +10,6 @@ export const getUserProfile = async () => {
     // TODO: response가 무엇을 가지고 오는지 확인
     console.log("User Profile Response:", response.data);
 
-    // 예: response.data.username이 사용자 이름이라고 가정
     return response.data.username; // username을 반환
   } catch (error) {
     console.error(

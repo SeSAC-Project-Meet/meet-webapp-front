@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { userRegister } from "../../api/userRegister";
 import { CustomInputFieldWithLabel } from "../../components/CustomInputFieldWithLabel";
 import { CustomPwFieldWithCheck } from "../../components/CustomPwFieldWithCheck";
@@ -12,6 +12,20 @@ export const RegisterPage = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
+
+  const [presetEnabled, setPresetEnabled] = useState(false);
+  const [isUniqueEmail, setIsUniqueEmail] = useState(false);
+  const [isUniquePhoneNumber, setIsUniquePhoneNumber] = useState(false);
+
+  const location = useLocation();
+  useEffect(() => {
+    console.log("location : ", location.state);
+    // TODO : type에 따른 구별 처리 및 정보를 자동으로 채웠을 떄에는 disabled 처리
+    if (location.state?.type === "kakao") {
+      setEmail(location.state?.user.email || "");
+      setPresetEnabled(true);
+    }
+  }, [location]);
 
   const validatePassword = (password) => {
     if (password.length < 8) {
@@ -35,17 +49,22 @@ export const RegisterPage = () => {
     }
     setPasswordError("");
     try {
-      await userRegister({
+      const registerResult = await userRegister({
         name,
         email,
         phone_number: phoneNumber,
         password,
       });
-      alert("회원가입 성공!");
-      navigate("/login");
+      if (!registerResult.status) {
+        alert("회원가입에 실패했습니다.\n" + registerResult.message);
+        return;
+      } else {
+        alert("회원가입 성공!");
+        navigate("/login");
+      }
     } catch (err) {
       console.error(err);
-      alert(`회원가입 실패!\nError : ${err}`);
+      alert(`회원가입 에러 발생!\nError : ${err}`);
     }
   };
 
@@ -81,6 +100,9 @@ export const RegisterPage = () => {
             placeholder="전화번호를 입력해주세요."
             getter={phoneNumber}
             setter={setPhoneNumber}
+            checkUnique
+            checkDataType="phone_number"
+            isUniqueSetter={setIsUniquePhoneNumber}
           />
           <CustomInputFieldWithLabel
             label="이메일"
@@ -88,8 +110,15 @@ export const RegisterPage = () => {
             placeholder="이메일을 입력해주세요."
             getter={email}
             setter={setEmail}
+            disabled={presetEnabled}
+            checkUnique
+            checkDataType="email"
+            isUniqueSetter={setIsUniqueEmail}
           />
-          <CustomSubmitButton text="회원가입" />
+          <CustomSubmitButton
+            text="회원가입"
+            isDisabled={!isUniqueEmail || !isUniquePhoneNumber}
+          />
         </form>
       </div>
     </div>

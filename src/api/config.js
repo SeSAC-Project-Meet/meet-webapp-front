@@ -6,3 +6,4 @@ export const POST_REISSUE_TOKEN = `${API_URL}/reissue`;
 export const POST_GET_ID_BY_EMAIL = `${API_URL}/send-user-id`;
 export const POST_RESET_PASSWORD = `${API_URL}/reset-password`;
 export const KAKAO_LOGIN = `${API_URL}/auth/kakao`;
+export const CHECK_UNIQUE = `${API_URL}/auth/check-unique`;

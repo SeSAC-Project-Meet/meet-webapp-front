@@ -1,8 +1,4 @@
-import { createContext, useEffect, useState, useContext } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { isTokenExpired } from "../services/isTokenExpired";
-import { reissueToken } from "../api/reissueToken";
-import { getUserProfile } from "../api/getUserProfile";
+import { createContext, useState, useContext } from "react";
 
 const UserContext = createContext();
 export const useUser = () => useContext(UserContext);
@@ -38,9 +34,6 @@ export const UserProvider = ({ children }) => {
   //     console.log("UserProvider useEffect : ", userWithToken);
   //   }
   // }, [navigate]);
-  useEffect(() => {
-    setUser(getUserProfile());
-  }, []);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
