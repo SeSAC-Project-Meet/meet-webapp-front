@@ -1,16 +1,23 @@
 import axios from "axios";
 import { GET_USER_PROFILE } from "./config";
 
-export const getUserProfile = async (accessToken) => {
-  const response = await axios.get(GET_USER_PROFILE, {
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  });
-  // TODO : response가 무엇을 가지고 오는지 안 써있음 ..
-  // 만료된 accessToken일 경우 refreshToken으로 reissueToken.
-  return "TODO: username";
-  // setUser로 바로 연동됨, 생각해서 return값 정하기.
+export const getUserProfile = async () => {
+  try {
+    const response = await axios.get(GET_USER_PROFILE, {
+      withCredentials: true, // 쿠키를 포함하도록 설정
+    });
+
+    // TODO: response가 무엇을 가지고 오는지 확인
+    console.log("User Profile Response:", response.data);
+
+    return response.data.username; // username을 반환
+  } catch (error) {
+    console.error(
+      "Error fetching user profile:",
+      error.response ? error.response.data : error.message
+    );
+    return null; // 오류 발생 시 null 반환
+  }
 };
 
 /*

@@ -21,7 +21,7 @@ export const LoginContainer = () => {
   const [passwordError, setPasswordError] = useState("");
   const navigate = useNavigate("");
 
-  const { setUser } = useUser();
+  const { user, setUser } = useUser();
 
   const validatePassword = (password) => {
     if (password.length < 8) {
@@ -46,9 +46,9 @@ export const LoginContainer = () => {
       // console.log("로그인 시도:", { loginID, password });
       // alert(`로그인 시도!\n이메일 : ${loginID}\n비밀번호 : ${password}`);
       try {
-        const user = await userLogin(loginID, password);
-        setUser(user);
-        navigate("/order");
+        const checked_user = await userLogin(loginID, password);
+        setUser(checked_user);
+        console.log("[LoginContainer] user : ", user, checked_user);
       } catch (err) {
         // console.error(err);
         // 실패시 state 공백화
@@ -90,7 +90,6 @@ export const LoginContainer = () => {
               type="button"
               className="hover:underline"
               onClick={() => {
-                alert("아이디 찾기 페이지로!");
                 navigate("/findid");
               }}
             >
@@ -101,7 +100,6 @@ export const LoginContainer = () => {
               type="button"
               className="hover:underline"
               onClick={() => {
-                alert("비밀번호 찾기 페이지로!");
                 navigate("/resetpassword");
               }}
             >
@@ -112,7 +110,6 @@ export const LoginContainer = () => {
               type="button"
               className="hover:underline"
               onClick={() => {
-                alert("회원가입 페이지로!");
                 navigate("/register");
               }}
             >
