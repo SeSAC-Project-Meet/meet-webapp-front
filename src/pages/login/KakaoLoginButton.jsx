@@ -1,8 +1,10 @@
 import { requestKakaoLogin } from "../../api/requestKakaoLogin";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../../contexts/UserContext";
 
 export default function KakaoLoginButton() {
   const navigate = useNavigate();
+  const { setUser } = useUser();
 
   const handleKakaoLogin = async () => {
     try {
@@ -10,7 +12,9 @@ export default function KakaoLoginButton() {
       console.log("[kakao-login] user : ", user);
       if (user.status) {
         // 로그인 성공
-        console.log("[kakao-login] Found user : ", user);
+        console.log("[kakao-login] Found user : ", user.user);
+        setUser(user.user.username);
+        navigate("/");
       } else {
         // 로그인 실패
         console.log("[kakao-login] Unregistered user : ", user);

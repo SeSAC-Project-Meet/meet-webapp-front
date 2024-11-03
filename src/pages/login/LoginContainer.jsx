@@ -9,12 +9,6 @@ import { CustomPwFieldWithCheck } from "../../components/CustomPwFieldWithCheck"
 import KakaoLoginButton from "./KakaoLoginButton";
 import PhoneLoginButton from "./PhoneLoginButton";
 
-/*
-[아이디], [비밀번호]를 받아 로그인을 진행한다.
-로그인 성공 시, 주문 페이지로 이동하여야 한다.
-로그인 실패 시, 실패 메시지를 alert로 띄워야 한다.
-*/
-
 export const LoginContainer = () => {
   const [loginID, setLoginID] = useState("");
   const [password, setPassword] = useState("");
@@ -49,6 +43,7 @@ export const LoginContainer = () => {
         const checked_user = await userLogin(loginID, password);
         setUser(checked_user);
         console.log("[LoginContainer] user : ", user, checked_user);
+        navigate("/");
       } catch (err) {
         // console.error(err);
         // 실패시 state 공백화
