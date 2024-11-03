@@ -83,7 +83,7 @@ export const LoginContainer = () => {
               type="button"
               className="hover:underline"
               onClick={() => {
-                navigate("/findid");
+                navigate("/find/id");
               }}
             >
               아이디 찾기
@@ -93,7 +93,7 @@ export const LoginContainer = () => {
               type="button"
               className="hover:underline"
               onClick={() => {
-                navigate("/resetpassword");
+                navigate("/find/pw");
               }}
             >
               비밀번호 찾기
