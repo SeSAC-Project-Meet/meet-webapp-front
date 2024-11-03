@@ -7,7 +7,7 @@ import { CustomInputFieldWithLabel } from "../../components/CustomInputFieldWith
 import { CustomSubmitButton } from "../../components/CustomSubmitButton";
 import { CustomPwFieldWithCheck } from "../../components/CustomPwFieldWithCheck";
 
-export const LoginContainer = () => {
+export const LocalLoginPage = () => {
   const [loginID, setLoginID] = useState("");
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -40,7 +40,7 @@ export const LoginContainer = () => {
       try {
         const checked_user = await userLogin(loginID, password);
         setUser(checked_user);
-        console.log("[LoginContainer] user : ", user, checked_user);
+        console.log("[LocalLoginPage] user : ", user, checked_user);
         navigate("/");
       } catch (err) {
         // console.error(err);

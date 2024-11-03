@@ -19,7 +19,9 @@ export function KakaoLoginButton() {
         // 로그인 실패
         console.log("[kakao-login] Unregistered user : ", user);
         // 회원가입 페이지로 리다이렉트
-        navigate("/register", { state: { type: "kakao", user: user.user } });
+        navigate("/register/terms", {
+          state: { type: "kakao", user: user.user },
+        });
       }
     } catch (err) {
       console.error("[kakao-login] ERR : ", err);
