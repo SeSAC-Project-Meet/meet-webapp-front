@@ -84,7 +84,7 @@ export const RegisterPage = () => {
           />
 
           <div>
-            <label className="block mb-1 font-medium text-gray-700">
+            <label className="block mb-1 text-sm font-medium text-gray-700">
               비밀번호
             </label>
             <CustomPwFieldWithCheck

@@ -2,10 +2,14 @@ import axios from "axios";
 import { USER_LOGIN } from "./config";
 
 export const userLogin = async (loginID, password) => {
-  const response = await axios.post(USER_LOGIN, {
-    loginID: loginID,
-    password: password,
-  });
+  const response = await axios.post(
+    USER_LOGIN,
+    {
+      loginID: loginID,
+      password: password,
+    },
+    { withCredentials: true }
+  );
 
   // const { accessToken, refreshToken } = response.data;
   // setTokensToLocalStorage(accessToken, refreshToken);

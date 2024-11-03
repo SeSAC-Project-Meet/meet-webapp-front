@@ -2,7 +2,7 @@ import { requestKakaoLogin } from "../../api/requestKakaoLogin";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../contexts/UserContext";
 
-export default function KakaoLoginButton() {
+export function KakaoLoginButton() {
   const navigate = useNavigate();
   const { setUser } = useUser();
 
@@ -36,7 +36,7 @@ export default function KakaoLoginButton() {
         <img src="/images/kakaoLoginButton.svg" />
       </div>
       <div className="text-center text-black text-[15px] font-['Apple SD Gothic Neo'] leading-snug">
-        카카오톡으로 로그인
+        카카오톡으로 시작하기
       </div>
     </button>
   );

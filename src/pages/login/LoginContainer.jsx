@@ -6,8 +6,6 @@ import { useUser } from "../../contexts/UserContext";
 import { CustomInputFieldWithLabel } from "../../components/CustomInputFieldWithLabel";
 import { CustomSubmitButton } from "../../components/CustomSubmitButton";
 import { CustomPwFieldWithCheck } from "../../components/CustomPwFieldWithCheck";
-import KakaoLoginButton from "./KakaoLoginButton";
-import PhoneLoginButton from "./PhoneLoginButton";
 
 export const LoginContainer = () => {
   const [loginID, setLoginID] = useState("");
@@ -18,15 +16,15 @@ export const LoginContainer = () => {
   const { user, setUser } = useUser();
 
   const validatePassword = (password) => {
-    if (password.length < 8) {
-      return "비밀번호는 최소 8자 이상이어야 합니다.";
-    }
-    if (!/^[a-zA-Z0-9!@#$%^&*()_+[\]{};':"\\|,.<>/?-]+$/.test(password)) {
-      return "비밀번호는 영문, 숫자, 특수문자만으로 구성되어야 합니다.";
-    }
-    if (!/\d/.test(password)) {
-      return "비밀번호에는 최소 하나의 숫자가 포함되어야 합니다.";
-    }
+    // if (password.length < 8) {
+    //   return "비밀번호는 최소 8자 이상이어야 합니다.";
+    // }
+    // if (!/^[a-zA-Z0-9!@#$%^&*()_+[\]{};':"\\|,.<>/?-]+$/.test(password)) {
+    //   return "비밀번호는 영문, 숫자, 특수문자만으로 구성되어야 합니다.";
+    // }
+    // if (!/\d/.test(password)) {
+    //   return "비밀번호에는 최소 하나의 숫자가 포함되어야 합니다.";
+    // }
     return "";
   };
 
@@ -62,9 +60,9 @@ export const LoginContainer = () => {
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <CustomInputFieldWithLabel
-            label="아이디"
+            label="전화번호"
             type="text"
-            placeholder="아이디를 입력하세요"
+            placeholder="전화번호를 입력하세요"
             getter={loginID}
             setter={setLoginID}
           />
@@ -112,8 +110,6 @@ export const LoginContainer = () => {
             </button>
           </div>
           <CustomSubmitButton text="로그인" />
-          <KakaoLoginButton />
-          <PhoneLoginButton />
         </form>
       </div>
     </div>
