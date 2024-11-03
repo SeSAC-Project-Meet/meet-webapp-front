@@ -12,7 +12,6 @@ export const TermsPage = () => {
 
   useEffect(() => {
     console.log("location : ", location.state);
-    // TODO : type에 따른 구별 처리 및 정보를 자동으로 채웠을 떄에는 disabled 처리
     if (location.state?.type === "kakao") {
       setPrevState(location.state?.user || {});
       console.log("prevState : ", prevState);
@@ -61,10 +60,11 @@ export const TermsPage = () => {
     });
   };
 
-  // 버튼 활성화 여부
-  const isButtonDisabled = Object.values(agreeTerms).some(
-    (isAgreed) => !isAgreed
-  );
+  // 버튼 활성화 여부: 필수 약관이 동의되어야만 활성화
+  const isButtonDisabled = Object.values(agreeTerms).some((isAgreed, index) => {
+    return terms[index].is_required && !isAgreed; // 필수 약관 중 하나라도 동의하지 않으면 버튼 비활성화
+  });
+
   const navigate = useNavigate();
   const handleContinueRegister = () => {
     console.log("동의한 약관 : ", agreeTerms);
@@ -92,7 +92,9 @@ export const TermsPage = () => {
                 isChecked={agreeTerms[term.term_id]}
                 setIsChecked={() => handleAgreeTermChange(term.term_id)}
               />
-              <label className="text-lg">{term.title}</label>
+              <label className="text-lg">
+                {term.title} {term.is_required ? "(필수)" : "(선택)"}
+              </label>
             </div>
             <p className="mt-2 text-gray-600">{term.content}</p>
           </div>
