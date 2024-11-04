@@ -6,16 +6,8 @@ import { useUser } from "../../contexts/UserContext";
 import { CustomInputFieldWithLabel } from "../../components/CustomInputFieldWithLabel";
 import { CustomSubmitButton } from "../../components/CustomSubmitButton";
 import { CustomPwFieldWithCheck } from "../../components/CustomPwFieldWithCheck";
-import KakaoLoginButton from "./KakaoLoginButton";
-import PhoneLoginButton from "./PhoneLoginButton";
 
-/*
-[아이디], [비밀번호]를 받아 로그인을 진행한다.
-로그인 성공 시, 주문 페이지로 이동하여야 한다.
-로그인 실패 시, 실패 메시지를 alert로 띄워야 한다.
-*/
-
-export const LoginContainer = () => {
+export const LocalLoginPage = () => {
   const [loginID, setLoginID] = useState("");
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -24,15 +16,15 @@ export const LoginContainer = () => {
   const { user, setUser } = useUser();
 
   const validatePassword = (password) => {
-    if (password.length < 8) {
-      return "비밀번호는 최소 8자 이상이어야 합니다.";
-    }
-    if (!/^[a-zA-Z0-9!@#$%^&*()_+[\]{};':"\\|,.<>/?-]+$/.test(password)) {
-      return "비밀번호는 영문, 숫자, 특수문자만으로 구성되어야 합니다.";
-    }
-    if (!/\d/.test(password)) {
-      return "비밀번호에는 최소 하나의 숫자가 포함되어야 합니다.";
-    }
+    // if (password.length < 8) {
+    //   return "비밀번호는 최소 8자 이상이어야 합니다.";
+    // }
+    // if (!/^[a-zA-Z0-9!@#$%^&*()_+[\]{};':"\\|,.<>/?-]+$/.test(password)) {
+    //   return "비밀번호는 영문, 숫자, 특수문자만으로 구성되어야 합니다.";
+    // }
+    // if (!/\d/.test(password)) {
+    //   return "비밀번호에는 최소 하나의 숫자가 포함되어야 합니다.";
+    // }
     return "";
   };
 
@@ -48,7 +40,8 @@ export const LoginContainer = () => {
       try {
         const checked_user = await userLogin(loginID, password);
         setUser(checked_user);
-        console.log("[LoginContainer] user : ", user, checked_user);
+        console.log("[LocalLoginPage] user : ", user, checked_user);
+        navigate("/");
       } catch (err) {
         // console.error(err);
         // 실패시 state 공백화
@@ -67,9 +60,9 @@ export const LoginContainer = () => {
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <CustomInputFieldWithLabel
-            label="아이디"
+            label="전화번호"
             type="text"
-            placeholder="아이디를 입력하세요"
+            placeholder="전화번호를 입력하세요"
             getter={loginID}
             setter={setLoginID}
           />
@@ -90,7 +83,7 @@ export const LoginContainer = () => {
               type="button"
               className="hover:underline"
               onClick={() => {
-                navigate("/findid");
+                navigate("/find/id");
               }}
             >
               아이디 찾기
@@ -100,7 +93,7 @@ export const LoginContainer = () => {
               type="button"
               className="hover:underline"
               onClick={() => {
-                navigate("/resetpassword");
+                navigate("/find/pw");
               }}
             >
               비밀번호 찾기
@@ -117,8 +110,6 @@ export const LoginContainer = () => {
             </button>
           </div>
           <CustomSubmitButton text="로그인" />
-          <KakaoLoginButton />
-          <PhoneLoginButton />
         </form>
       </div>
     </div>

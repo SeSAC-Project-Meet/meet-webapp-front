@@ -2,6 +2,9 @@ import axios from "axios";
 import { CHECK_UNIQUE } from "./config";
 
 export const checkUniqueValue = async (type, value) => {
+  if (value === "") {
+    return false;
+  }
   try {
     const response = await axios.post(CHECK_UNIQUE, {
       type,

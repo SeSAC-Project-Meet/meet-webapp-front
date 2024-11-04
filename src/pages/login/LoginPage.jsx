@@ -1,9 +1,9 @@
-import { LoginContainer } from "./LoginContainer";
+import { LoginSelectMethodPage } from "./LoginSelectMethodPage";
 
 export function LoginPage() {
   return (
-    <div className="">
-      <LoginContainer />
+    <div>
+      <LoginSelectMethodPage />
     </div>
   );
 }

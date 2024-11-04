@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: "Gmarket Sans";
-  src: url("src/assets/fonts/GmarketSansMedium.otf") format("opentype");
+  src: url("/fonts/GmarketSansMedium.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
 }

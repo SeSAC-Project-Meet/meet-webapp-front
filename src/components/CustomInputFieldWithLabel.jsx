@@ -62,7 +62,9 @@ export const CustomInputFieldWithLabel = ({
             isValid ? "text-green-500" : "text-red-500"
           }`}
         >
-          {isValid ? "사용 가능한 값입니다." : "이미 사용중인 값입니다."}
+          {isValid
+            ? "사용이 가능한 값입니다."
+            : "이미 사용중이거나 불가능한 값입니다."}
         </p>
       )}
     </div>
