@@ -8,3 +8,5 @@ export const POST_RESET_PASSWORD = `${API_URL}/reset-password`;
 export const KAKAO_LOGIN = `${API_URL}/auth/kakao`;
 export const CHECK_UNIQUE = `${API_URL}/auth/check-unique`;
 export const GET_TERMS = `${API_URL}/auth/terms`;
+export const CREATE_CHATROOM = `${API_URL}/chat/chatroom`;
+export const GET_CHATROOM_BY_USER_ID = `${API_URL}/chat/chatroom`;

@@ -8,6 +8,7 @@ import { ResetPasswordPage } from "./pages/lostandfound/ResetPasswordPage";
 import { FindIdPage } from "./pages/lostandfound/FindIdPage";
 import { NotFoundPage } from "./pages/statuscode/NotFoundPage";
 import { TermsPage } from "./pages/register/TermsPage";
+import { ChatPage } from "./pages/chat/ChatPage";
 
 function App() {
   return (
@@ -26,6 +27,8 @@ function App() {
 
           <Route path="/find/id" element={<FindIdPage />} />
           <Route path="/find/pw" element={<ResetPasswordPage />} />
+
+          <Route path="/chat" element={<ChatPage />} />
         </Routes>
       </UserProvider>
     </Router>
