@@ -10,11 +10,11 @@ export const requestKakaoLogin = () => {
 
       // 사용자가 등록되지 않은 경우
       if ("not_registered_user" in event.data) {
-        const { user } = event.data.not_registered_user;
+        const { email } = event.data.not_registered_user;
         console.log(
           "[requestKakaoLogin] User not found, please redirect to register page"
         );
-        resolve({ status: false, user: user }); // Promise 해결
+        resolve({ status: false, user: { email } }); // Promise 해결
       } else {
         const { user_id, username } = event.data;
         resolve({ status: true, user: { user_id, username } }); // Promise 해결

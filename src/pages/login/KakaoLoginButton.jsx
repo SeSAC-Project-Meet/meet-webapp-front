@@ -17,10 +17,10 @@ export function KakaoLoginButton() {
         navigate("/");
       } else {
         // 로그인 실패
-        console.log("[kakao-login] Unregistered user : ", user);
+        console.log("[kakao-login] Unregistered user : ", user.user);
         // 회원가입 페이지로 리다이렉트
         navigate("/register/terms", {
-          state: { type: "kakao", user: user.user },
+          state: { type: "kakao", user: user.user.email },
         });
       }
     } catch (err) {

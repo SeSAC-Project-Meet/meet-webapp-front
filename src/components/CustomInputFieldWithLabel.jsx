@@ -43,7 +43,7 @@ export const CustomInputFieldWithLabel = ({
           className={`mt-1 block w-full px-4 py-2 border border-input-border rounded-md ${
             disabled ? "bg-gray-200" : "bg-input-bg"
           } hover:outline hover:outline-1 hover:outline-input-border-hover focus:outline-none focus:ring focus:ring-1 focus:ring-input-border-focused`}
-          placeholder={disabled ? "사용할 수 없습니다." : placeholder} // disabled일 때 placeholder 메시지 수정
+          placeholder={disabled ? getter : placeholder} // disabled일 때 placeholder 메시지 수정
           disabled={disabled}
         />
         {checkUnique && (
