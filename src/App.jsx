@@ -9,6 +9,7 @@ import { FindIdPage } from "./pages/lostandfound/FindIdPage";
 import { NotFoundPage } from "./pages/statuscode/NotFoundPage";
 import { TermsPage } from "./pages/register/TermsPage";
 import { ChatPage } from "./pages/chat/ChatPage";
+import { ChatroomPage } from "./pages/chat/ChatroomPage";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/find/pw" element={<ResetPasswordPage />} />
 
           <Route path="/chat" element={<ChatPage />} />
+          <Route path="/chat/:chatroomId" element={<ChatroomPage />} />
         </Routes>
       </UserProvider>
     </Router>

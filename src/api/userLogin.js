@@ -16,9 +16,9 @@ export const userLogin = async (loginID, password) => {
 
   // console.log(`accessToken: ${accessToken}, refreshToken: ${refreshToken}`);
   console.log("response : ", response.data);
-  const { username } = response.data.user;
+  const { user_id, username } = response.data.user;
 
-  return username;
+  return { user_id, username };
 };
 
 /*

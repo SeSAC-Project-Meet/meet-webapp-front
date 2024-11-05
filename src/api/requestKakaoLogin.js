@@ -16,8 +16,8 @@ export const requestKakaoLogin = () => {
         );
         resolve({ status: false, user: user }); // Promise 해결
       } else {
-        const { user } = event.data;
-        resolve({ status: true, user: user }); // Promise 해결
+        const { user_id, username } = event.data;
+        resolve({ status: true, user: { user_id, username } }); // Promise 해결
       }
 
       // 이벤트 리스너 제거 (한 번만 처리)

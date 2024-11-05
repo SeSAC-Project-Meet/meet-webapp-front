@@ -13,7 +13,7 @@ export function KakaoLoginButton() {
       if (user.status) {
         // 로그인 성공
         console.log("[kakao-login] Found user : ", user.user);
-        setUser(user.user.username);
+        setUser({ user_id: user.user.user_id, username: user.user.username });
         navigate("/");
       } else {
         // 로그인 실패

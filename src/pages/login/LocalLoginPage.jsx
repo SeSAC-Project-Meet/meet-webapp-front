@@ -41,6 +41,7 @@ export const LocalLoginPage = () => {
         const checked_user = await userLogin(loginID, password);
         setUser(checked_user);
         console.log("[LocalLoginPage] user : ", user, checked_user);
+        alert(`환영합니다, ${checked_user.username} 님!`);
         navigate("/");
       } catch (err) {
         // console.error(err);
