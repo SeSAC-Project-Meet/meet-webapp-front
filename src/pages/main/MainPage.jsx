@@ -1,34 +1,31 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useUser } from "../../contexts/UserContext";
-import { getUserProfile } from "../../api/getUserProfile";
 import { createChatroom } from "../../api/createChatroom";
+import useUserProfile from "../../hooks/useUserProfile";
 
 export const MainPage = () => {
-  const { user } = useUser();
-  const [userprofile, setUserProfile] = useState({});
-  const navigate = useNavigate();
+  const { user, setUser } = useUser();
+  const { userProfile } = useUserProfile();
   const handleGetProfile = async () => {
-    const userprofile = await getUserProfile();
-    alert(userprofile);
+    alert(`ID: ${user.user_id}\nNAME : ${user.username}`);
   };
 
   const handleCreateChatroom = async () => {
     // TODO : name 변경 필요
     const chatroom = await createChatroom({ name: "chatroom" });
     console.log(chatroom);
-    alert(chatroom.c_id, chatroom.uc_id);
+    alert(
+      `Chatroom ID: ${chatroom.chatroom_id}\nUser Chatroom ID: ${chatroom.user_chatroom_id}`
+    );
   };
 
   useEffect(() => {
-    if (!user) {
-      alert("로그인이 필요한 페이지입니다.");
-      navigate("/login");
+    if (userProfile) {
+      setUser(() => userProfile);
+      console.log("useEffect User: ", userProfile);
     }
-    console.log(user);
-    setUserProfile({ user_id: user.user_id, username: user.username });
-    console.log(userprofile);
-  }, [user, navigate]);
+  }, [userProfile, setUser]);
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-500 to-purple-600 p-8">
@@ -38,9 +35,9 @@ export const MainPage = () => {
             Welcome Back
           </div>
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            {userprofile.username}
+            {user.username}
           </h2>
-          <p className="text-gray-600 mb-6">User ID: {userprofile.user_id}</p>
+          <p className="text-gray-600 mb-6">User ID: {user.user_id}</p>
 
           <div className="space-y-4">
             <button

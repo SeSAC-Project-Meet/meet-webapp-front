@@ -8,10 +8,15 @@ export const getUserProfile = async () => {
     });
 
     // TODO: response가 무엇을 가지고 오는지 확인
-    console.log("User Profile Response:", response.data);
+    console.log("Get User Profile Response:", response.data);
+    const { username, user_id } = response.data;
 
-    return response.data.username; // username을 반환
+    return { username, user_id }; // username을 반환
   } catch (error) {
+    if (error.response && error.response.status === 401) {
+      console.error("User not authenticated");
+      return null;
+    }
     console.error(
       "Error fetching user profile:",
       error.response ? error.response.data : error.message

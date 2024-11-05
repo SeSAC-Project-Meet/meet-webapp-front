@@ -1,7 +1,7 @@
 import { API_URL, KAKAO_LOGIN } from "./config";
 
 export const requestKakaoLogin = () => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     window.open(KAKAO_LOGIN, "resizable=no,location=no,scrollbars=yes");
 
     const messageHandler = (event) => {
