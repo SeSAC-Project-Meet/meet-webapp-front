@@ -1,7 +1,7 @@
 import { useLocation, useParams } from "react-router-dom";
 import { useEffect, useMemo, useState } from "react";
-import { getChatByChatroomId } from "../../api/getChatByChatroomId";
 import io from "socket.io-client";
+import { useUser } from "../../contexts/UserContext";
 import { SOCKET_URL } from "../../api/config";
 
 export const ChatroomPage = () => {
@@ -11,6 +11,9 @@ export const ChatroomPage = () => {
   const [chatroomName, setChatroomName] = useState("");
   const location = useLocation();
 
+  const { user } = useUser(); // useUser 훅을 사용하여 UserContext의 user 상태를 가져옵니다.
+  const [userId, setUserId] = useState(""); // user.id를 userId 상태로 설정합니다.
+
   const socket = useMemo(() => {
     return io(SOCKET_URL, { withCredentials: true });
   }, []);
@@ -19,12 +22,13 @@ export const ChatroomPage = () => {
     if (location.state?.name) {
       setChatroomName(location.state.name);
     }
-  }, [location]);
+    setUserId(user.user_id);
+  }, []);
 
   useEffect(() => {
     socket.on("connect", () => {
-      console.log("Connected to socket.io server!");
       socket.emit("initialMessage", { chatroom_id: chatroomId });
+      console.log("Connected to socket.io server!, chatroomId:", chatroomId);
     });
 
     socket.on("initialMessage", (messages) => {
@@ -48,6 +52,10 @@ export const ChatroomPage = () => {
 
     socket.on("error", (error) => {
       console.error("[Socket] Error:", error);
+    });
+
+    socket.onAny((event, ...args) => {
+      console.log(`[Socket] ${event} received with args`, args);
     });
 
     return () => {
@@ -84,12 +92,12 @@ export const ChatroomPage = () => {
               key={index}
               className={`flex ${
                 // TODO : user_id 수정
-                message.user_id === "6" ? "justify-end" : "justify-start"
+                message.user_id === userId ? "justify-end" : "justify-start"
               }`}
             >
               <div
                 className={`max-w-[70%] rounded-lg p-3 ${
-                  message.user_id === "6"
+                  message.user_id === userId
                     ? "bg-blue-500 text-white"
                     : "bg-white text-gray-800"
                 } shadow`}

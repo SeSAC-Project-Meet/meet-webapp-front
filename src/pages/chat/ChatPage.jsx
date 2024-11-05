@@ -17,7 +17,7 @@ export const ChatPage = () => {
     };
 
     fetchChatrooms();
-  }, [navigate]);
+  }, []);
 
   // 채팅방 클릭 시 호출되는 함수
   const handleChatroomClick = (chatroom) => {
