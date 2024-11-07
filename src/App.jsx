@@ -10,6 +10,7 @@ import { NotFoundPage } from "./pages/statuscode/NotFoundPage";
 import { TermsPage } from "./pages/register/TermsPage";
 import { ChatPage } from "./pages/chat/ChatPage";
 import { ChatroomPage } from "./pages/chat/ChatroomPage";
+import { EmailCheckNonUser } from "./pages/register/EmailCheck.jsx";
 
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
 
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/register/terms" element={<TermsPage />} />
+          {/*<Route path="/email-check" element={<EmailCheck />} />*/}
+          <Route path="/email-check" element={<EmailCheckNonUser />} />
+          {/*<Route path="/email-check" element={<EmailCheckUser />} />*/}
 
           <Route path="/login" element={<LoginPage />} />
           <Route path="/login/local" element={<LocalLoginPage />} />
