@@ -22,7 +22,7 @@ const useUserProfile = () => {
     };
     fetchUserProfile();
     console.log("useUserProfile Fetched user info");
-  }, []);
+  }, [navigate]);
 
   return { userProfile, error };
 };

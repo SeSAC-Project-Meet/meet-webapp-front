@@ -12,7 +12,7 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     if (userProfile) {
       setUser(() => userProfile);
-      console.log("useEffect User: ", userProfile);
+      console.log("[UserContext] useEffect User: ", userProfile);
     }
   }, [userProfile, setUser]);
 
