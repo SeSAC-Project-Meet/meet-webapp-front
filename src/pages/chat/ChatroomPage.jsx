@@ -22,12 +22,14 @@ export const ChatroomPage = () => {
     }
 
     socket.on("connect", () => {
+      console.log("[Socket: connect] Chatroom ID: ", chatroomId);
       socket.emit("initialMessage", { chatroom_id: chatroomId });
       socket.emit("join", { chatroom_id: chatroomId });
       console.log("Connected to socket.io server!");
     });
 
     socket.on("initialMessage", (messages) => {
+      console.log("[Socket: initialMessage] Initial Messages: ", messages);
       if (messages) setMessages(messages);
     });
 
