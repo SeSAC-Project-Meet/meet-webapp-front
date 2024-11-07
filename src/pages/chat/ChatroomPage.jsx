@@ -11,14 +11,23 @@ export const ChatroomPage = () => {
   const [chatroomName, setChatroomName] = useState("");
   const { user } = useUser();
   const location = useLocation();
+  const [socket, setSocket] = useState(null);
 
-  const socket = useMemo(() => {
-    return io(SOCKET_URL, { withCredentials: true });
-  }, []);
+  // const socket = useMemo(() => {
+  //   return io(SOCKET_URL, { withCredentials: true });
+  // }, []);
 
   useEffect(() => {
     if (location.state?.name) {
       setChatroomName(location.state.name);
+    }
+    setSocket(io(SOCKET_URL, { withCredentials: true }));
+    console.log("useEffect Loaded, user : ", JSON.stringify(user));
+    if (!user || !socket) {
+      console.log("User is not logged in.");
+      return;
+    } else {
+      console.log("User is logged in, continue,");
     }
 
     socket.on("connect", () => {
@@ -39,8 +48,13 @@ export const ChatroomPage = () => {
 
     return () => {
       socket.off("message");
+      socket.off("initialMessage");
+      socket.off("connect");
+      socket.emit("leave", { chatroom_id: chatroomId });
+      socket.disconnect();
+      console.log("[useEffect Disconnect] Disconnected from socket.io server!");
     };
-  }, [user, chatroomId, socket, location.state]);
+  }, [user, chatroomId, location.state]);
 
   const handleSendMessage = () => {
     if (newMessage.trim()) {
@@ -104,7 +118,13 @@ export const ChatroomPage = () => {
         <div ref={messagesEndRef} />
       </div>
 
-      <div className="p-4 bg-white border-t flex items-center shadow-md">
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSendMessage();
+        }}
+        className="p-4 bg-white border-t flex items-center shadow-md"
+      >
         <input
           type="text"
           value={newMessage}
@@ -113,12 +133,12 @@ export const ChatroomPage = () => {
           className="flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         <button
-          onClick={handleSendMessage}
+          type="submit"
           className="ml-3 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
         >
           전송
         </button>
-      </div>
+      </form>
     </div>
   );
 };

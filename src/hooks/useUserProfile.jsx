@@ -21,6 +21,7 @@ const useUserProfile = () => {
       }
     };
     fetchUserProfile();
+    console.log("useUserProfile Fetched user info");
   }, []);
 
   return { userProfile, error };
