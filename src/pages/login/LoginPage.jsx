@@ -8,7 +8,7 @@ export function LoginPage() {
   const { user } = useUser();
 
   useEffect(() => {
-    if (user) {
+    if (user.user_id) {
       navigate("/");
     }
   }, [user, navigate]);

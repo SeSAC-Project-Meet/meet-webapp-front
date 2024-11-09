@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useUser } from "../../contexts/UserContext";
 import { createChatroom } from "../../api/createChatroom";
+import { createMeetroom } from "../../api/createMeetroom";
 
 export const MainPage = () => {
   const { user } = useUser();
@@ -17,6 +18,15 @@ export const MainPage = () => {
     console.log(chatroom);
     alert(
       `Chatroom ID: ${chatroom.chatroom_id}\nUser Chatroom ID: ${chatroom.user_chatroom_id}`
+    );
+  };
+
+  const handleCreateMeetroom = async () => {
+    // TODO : name 변경 필요
+    const meetroom = await createMeetroom({});
+    console.log(meetroom);
+    alert(
+      `Meetroom ID: ${meetroom.meetroom_id}\nUser Meetroom ID: ${meetroom.user_meetroom_id}`
     );
   };
 
@@ -58,6 +68,20 @@ export const MainPage = () => {
               className="block text-center bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition duration-200"
             >
               Go to Chat
+            </Link>
+
+            <button
+              onClick={handleCreateMeetroom}
+              className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition duration-200"
+            >
+              Create Meetroom
+            </button>
+
+            <Link
+              to="/meet"
+              className="block text-center bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition duration-200"
+            >
+              Go to Meet
             </Link>
 
             <Link
