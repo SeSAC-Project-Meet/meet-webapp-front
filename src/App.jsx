@@ -11,6 +11,8 @@ import { TermsPage } from "./pages/register/TermsPage";
 import { ChatPage } from "./pages/chat/ChatPage";
 import { ChatroomPage } from "./pages/chat/ChatroomPage";
 import { EmailCheckNonUser } from "./pages/register/EmailCheck.jsx";
+import { VideoCallPage } from "./pages/videocall/VideoCallPage";
+import { GroupCallPage } from "./pages/videocall/GroupCallPage";
 
 function App() {
   return (
@@ -35,6 +37,9 @@ function App() {
 
           <Route path="/chat" element={<ChatPage />} />
           <Route path="/chat/:chatroomId" element={<ChatroomPage />} />
+
+          <Route path="/videocall" element={<VideoCallPage />} />
+          <Route path="/groupcall" element={<GroupCallPage />} />
         </Routes>
       </UserProvider>
     </Router>

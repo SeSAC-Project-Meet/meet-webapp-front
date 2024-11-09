@@ -8,8 +8,8 @@ export const createChatroom = async (chatroom) => {
     });
 
     console.log("Chatroom Response:", response.data);
-
-    return response.data;
+    const { user_chatroom_id, chatroom_id } = response.data;
+    return { user_chatroom_id, chatroom_id };
   } catch (error) {
     console.error(
       "Error creating chatroom:",

@@ -1,6 +1,23 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { checkUniqueValue } from "../api/checkUniqueValue";
 
+/**
+ * CustomInputFieldWithLabel 입력란
+ *
+ * @param {Object} props - The properties object.
+ * @param {string} props.className - The CSS class for the container div.
+ * @param {string} props.label - The label text for the input field.
+ * @param {string} props.type - The type of the input field (e.g., "text", "email").
+ * @param {string} props.placeholder - The placeholder text for the input field.
+ * @param {boolean} props.disabled - Whether the input field is disabled.
+ * @param {string} props.getter - The current value of the input field.
+ * @param {Function} props.setter - The function to update the value of the input field.
+ * @param {boolean} props.checkUnique - Whether to show the unique value check button.
+ * @param {string} props.checkDataType - The data type to check for uniqueness.
+ * @param {Function} props.isUniqueSetter - The function to set the uniqueness status.
+ *
+ * @returns {JSX.Element} The rendered CustomInputFieldWithLabel component.
+ */
 export const CustomInputFieldWithLabel = ({
   className,
   label,

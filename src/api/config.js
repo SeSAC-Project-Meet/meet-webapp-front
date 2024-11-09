@@ -1,4 +1,4 @@
-export const API_URL = "http://localhost:9999";
+export const API_URL = "https://localhost:9999";
 export const USER_LOGIN = `${API_URL}/auth/login`;
 export const USER_REGISTER = `${API_URL}/auth/register`;
 export const GET_USER_PROFILE = `${API_URL}/auth/user`;
@@ -12,3 +12,5 @@ export const CREATE_CHATROOM = `${API_URL}/chat/chatroom`;
 export const GET_CHATROOM_BY_USER_ID = `${API_URL}/chat/chatroom`;
 export const GET_CHAT_BY_CHATROOM_ID = `${API_URL}/chat`;
 export const SOCKET_URL = `${API_URL}/chat`;
+export const VIDEO_SOCKET_URL = `${API_URL}/videocall`;
+export const GROUPCALL_SOCKET_URL = `${API_URL}/groupcall`;

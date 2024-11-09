@@ -1,12 +1,21 @@
 import { API_URL, KAKAO_LOGIN } from "./config";
 
 export const requestKakaoLogin = () => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     window.open(KAKAO_LOGIN, "resizable=no,location=no,scrollbars=yes");
 
     const messageHandler = (event) => {
-      if (event.origin !== API_URL) return; // 서버 주소 확인
+      const allowedOrigins = [
+        API_URL,
+        "http://192.168.35.254:5173",
+        "http://localhost:5173",
+      ];
+      if (allowedOrigins.includes(event.origin) === false) {
+        console.error("[requestKakaoLogin] Invalid origin: ", event.origin);
+        return; // 서버 주소 확인
+      }
       console.log("[requestKakaoLogin] event.data:", event.data);
+      console.log("[requestKakaoLogin] event.origin:", event.origin);
 
       // 사용자가 등록되지 않은 경우
       if ("not_registered_user" in event.data) {
