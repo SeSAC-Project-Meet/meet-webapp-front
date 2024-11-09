@@ -18,15 +18,23 @@ export const MainPage = () => {
       alert("채팅방 이름을 입력하셔야 합니다.");
       return;
     }
-    const chatroom = await createChatroom({ name });
-    console.log(chatroom);
-    alert(
-      `Chatroom ID: ${chatroom.chatroom_id}\nUser Chatroom ID: ${chatroom.user_chatroom_id}`
-    );
+    try {
+      const chatroom = await createChatroom({ name });
+      console.log(chatroom);
+      alert(
+        `Chatroom ID: ${chatroom.chatroom_id}\nUser Chatroom ID: ${chatroom.user_chatroom_id}`
+      );
+    } catch (error) {
+      console.error(error);
+      alert("채팅방 생성에 실패했습니다.");
+    }
   };
 
   useEffect(() => {
     if (!user?.user_id) {
+      console.log(
+        "메인페이지: 사용자 정보가 없어서 로그인 페이지로 이동합니다."
+      );
       navigate("/login");
     }
   }, [user, navigate]);

@@ -24,11 +24,21 @@ export const requestKakaoLogin = () => {
           "[requestKakaoLogin] User not found, please redirect to register page"
         );
         resolve({ status: false, user: { email } }); // Promise 해결
-        setTimeout(() => window.location.reload(), 500);
+        // setTimeout(() => {
+        //   window.location.reload();
+        //   console.log(
+        //     "[requestKakaoLogin] 창이 닫히고, 새로고침을 예약했습니다."
+        //   );
+        // }, 500);
       } else {
         const { user_id, username } = event.data;
         resolve({ status: true, user: { user_id, username } }); // Promise 해결
-        setTimeout(() => window.location.reload(), 500);
+        // setTimeout(() => {
+        //   window.location.reload();
+        //   console.log(
+        //     "[requestKakaoLogin] 창이 닫히고, 새로고침을 예약했습니다."
+        //   );
+        // }, 500);
       }
 
       // 이벤트 리스너 제거 (한 번만 처리)

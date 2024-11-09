@@ -7,7 +7,10 @@ export const getChatroomByUserId = async () => {
       withCredentials: true,
     });
 
-    console.log("Chatroom Response:", response.data);
+    console.log(
+      "[getChatroomByUserId] 토큰으로 유저 아이디를 추출해, 현재 들어가있는 채팅방을 보여줍니다 :",
+      response.data
+    );
 
     return response.data;
   } catch (error) {

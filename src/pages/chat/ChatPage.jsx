@@ -9,7 +9,7 @@ export const ChatPage = () => {
   useEffect(() => {
     const fetchChatrooms = async () => {
       const chatrooms = await getChatroomByUserId();
-      console.log("chatrooms : ", chatrooms);
+      // console.log("[ChatPage] 현재 가입한 채팅방은 ~ : ", chatrooms);
       if (!chatrooms) {
         navigate("/login"); // 로그인 페이지로 이동
       }
