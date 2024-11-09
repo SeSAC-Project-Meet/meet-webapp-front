@@ -2,10 +2,9 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useUser } from "../../contexts/UserContext";
 import { createChatroom } from "../../api/createChatroom";
-import useUserProfile from "../../hooks/useUserProfile";
 
 export const MainPage = () => {
-  const { user, setUser } = useUser();
+  const { user } = useUser();
   // const { userProfile } = useUserProfile();
   const handleGetProfile = async () => {
     alert(`ID: ${user.user_id}\nNAME : ${user.username}`);
@@ -20,12 +19,7 @@ export const MainPage = () => {
     );
   };
 
-  // useEffect(() => {
-  //   if (userProfile) {
-  //     setUser(() => userProfile);
-  //     console.log("useEffect User: ", userProfile);
-  //   }
-  // }, [userProfile, setUser]);
+  useEffect(() => {}, [user]);
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-500 to-purple-600 p-8">

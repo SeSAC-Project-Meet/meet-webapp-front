@@ -1,17 +1,23 @@
 import { useState, useEffect } from "react";
 import { getUserProfile } from "../api/getUserProfile";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const useUserProfile = () => {
   const [userProfile, setUserProfile] = useState(null);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
         const profile = await getUserProfile();
-        if (!profile) {
+        if (
+          !profile &&
+          location.pathname !== "/login" &&
+          location.pathname !== "/login/local" &&
+          location.pathname !== "/register"
+        ) {
           navigate("/login");
           return;
         }
