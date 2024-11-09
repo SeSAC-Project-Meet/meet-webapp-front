@@ -1,10 +1,11 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useUser } from "../../contexts/UserContext";
 import { createChatroom } from "../../api/createChatroom";
 
 export const MainPage = () => {
   const { user } = useUser();
+  const navigate = useNavigate();
   // const { userProfile } = useUserProfile();
   const handleGetProfile = async () => {
     alert(`ID: ${user.user_id}\nNAME : ${user.username}`);
@@ -19,7 +20,11 @@ export const MainPage = () => {
     );
   };
 
-  useEffect(() => {}, [user]);
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user, navigate]);
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-500 to-purple-600 p-8">
