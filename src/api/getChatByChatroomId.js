@@ -1,9 +1,9 @@
-import axios from "axios";
+import meet from "./checkAuthorized.js";
 import { GET_CHAT_BY_CHATROOM_ID } from "./config";
 
 export const getChatByChatroomId = async (chatroomId) => {
   try {
-    const response = await axios.get(GET_CHAT_BY_CHATROOM_ID, {
+    const response = await meet.get(GET_CHAT_BY_CHATROOM_ID, {
       params: { chatroom_id: chatroomId },
     });
 

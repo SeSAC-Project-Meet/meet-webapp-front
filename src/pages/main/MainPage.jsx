@@ -1,12 +1,11 @@
-import { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useUser } from "../../contexts/UserContext";
 import { createChatroom } from "../../api/createChatroom";
 import { createMeetroom } from "../../api/createMeetroom";
 
 export const MainPage = () => {
   const { user } = useUser();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   // const { userProfile } = useUserProfile();
   const handleGetProfile = async () => {
     alert(`ID: ${user.user_id}\nNAME : ${user.username}`);
@@ -40,14 +39,14 @@ export const MainPage = () => {
     );
   };
 
-  useEffect(() => {
-    if (!user?.user_id) {
-      console.log(
-        "메인페이지: 사용자 정보가 없어서 로그인 페이지로 이동합니다."
-      );
-      navigate("/login");
-    }
-  }, [user, navigate]);
+  // useEffect(() => {
+  //   if (!user?.user_id) {
+  //     console.log(
+  //       "메인페이지: 사용자 정보가 없어서 로그인 페이지로 이동합니다."
+  //     );
+  //     navigate("/login");
+  //   }
+  // }, [user, navigate]);
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-500 to-purple-600 p-8">

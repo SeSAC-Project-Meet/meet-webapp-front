@@ -12,8 +12,12 @@ import { ChatPage } from "./pages/chat/ChatPage";
 import { ChatroomPage } from "./pages/chat/ChatroomPage";
 import { VideoCallPage } from "./pages/videocall/VideoCallPage";
 import { GroupCallPage } from "./pages/videocall/GroupCallPage";
+<<<<<<< HEAD
 import { MeetPage } from "./pages/meet/MeetPage";
 import { MeetroomPage } from "./pages/meet/MeetroomPage";
+=======
+import { SetSpecificProfilePage } from "./pages/register/SetSpecificProfilePage";
+>>>>>>> 780557f (Refactor: add axios interceptor)
 
 function App() {
   return (
@@ -26,6 +30,10 @@ function App() {
 
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/register/terms" element={<TermsPage />} />
+          <Route
+            path="/register/specific"
+            element={<SetSpecificProfilePage />}
+          />
 
           <Route path="/login" element={<LoginPage />} />
           <Route path="/login/local" element={<LocalLoginPage />} />

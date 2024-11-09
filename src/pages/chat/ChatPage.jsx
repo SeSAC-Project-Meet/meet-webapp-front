@@ -1,19 +1,28 @@
 import { useEffect, useState } from "react";
 import { getChatroomByUserId } from "../../api/getChatroomByUserId";
 import { useNavigate } from "react-router-dom";
+import { createChatroom } from "../../api/createChatroom";
 
 export const ChatPage = () => {
   const [myChatroom, setMyChatroom] = useState([]);
   const navigate = useNavigate(); // useNavigate 훅을 사용하여 내비게이션 기능을 얻습니다.
+
+  const [noChatroom, setNoChatroom] = useState(false);
 
   useEffect(() => {
     const fetchChatrooms = async () => {
       const chatrooms = await getChatroomByUserId();
       // console.log("[ChatPage] 현재 가입한 채팅방은 ~ : ", chatrooms);
       if (!chatrooms) {
-        navigate("/login"); // 로그인 페이지로 이동
+        console.error("[ChatPage] 채팅방을 불러오는데 실패했습니다.");
       }
-      setMyChatroom(chatrooms);
+      if (chatrooms) {
+        setMyChatroom(chatrooms);
+        if (chatrooms.length === 0) {
+          console.log("[ChatPage] 현재 가입한 채팅방이 없습니다.");
+          setNoChatroom(true);
+        }
+      }
     };
 
     fetchChatrooms();
@@ -24,12 +33,44 @@ export const ChatPage = () => {
     navigate(`/chat/${chatroom.id}`, { state: { name: chatroom.name } }); // 해당 채팅방으로 이동
   };
 
+  const handleCreateChatroom = async () => {
+    // TODO : name 변경 필요
+    const name = prompt("채팅방 이름을 입력하세요: ");
+    if (!name) {
+      alert("채팅방 이름을 입력하셔야 합니다.");
+      return;
+    }
+    try {
+      const chatroom = await createChatroom({ name });
+      console.log(chatroom);
+      alert(
+        `Chatroom ID: ${chatroom.chatroom_id}\nUser Chatroom ID: ${chatroom.user_chatroom_id}`
+      );
+    } catch (error) {
+      console.error(error);
+      alert("채팅방 생성에 실패했습니다.");
+    }
+  };
+
   return (
     <div className="flex flex-col items-center bg-bg-primary min-h-screen">
       <h1 className="font-primary text-2xl font-bold text-center mt-6 p-4 text-gray-800">
         Chat Page
       </h1>
       <div className="w-full max-w-md">
+        {noChatroom && (
+          <div className="p-4 bg-white rounded-lg shadow-md text-center text-gray-800">
+            <h2 className="font-primary text-lg">
+              현재 가입한 채팅방이 없습니다.
+            </h2>
+            <button
+              onClick={handleCreateChatroom}
+              className="bg-blue-500 text-white px-2 py-1 rounded-lg hover:bg-blue-600 transition"
+            >
+              채팅방 생성하기
+            </button>
+          </div>
+        )}
         {myChatroom.map((chatroom) => (
           <div
             key={chatroom.id}

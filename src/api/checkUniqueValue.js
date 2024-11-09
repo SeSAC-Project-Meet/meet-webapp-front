@@ -1,4 +1,4 @@
-import axios from "axios";
+import meet from "./checkAuthorized.js";
 import { CHECK_UNIQUE } from "./config";
 
 export const checkUniqueValue = async (type, value) => {
@@ -6,7 +6,7 @@ export const checkUniqueValue = async (type, value) => {
     return false;
   }
   try {
-    const response = await axios.post(CHECK_UNIQUE, {
+    const response = await meet.post(CHECK_UNIQUE, {
       type,
       value,
     });

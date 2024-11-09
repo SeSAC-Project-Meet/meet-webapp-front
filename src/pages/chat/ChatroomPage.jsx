@@ -56,6 +56,14 @@ export const ChatroomPage = () => {
           setMessages((prevMessages) => [...prevMessages, message]);
         });
 
+        socket.on("userJoinn", (message) => {
+          console.log("[Socket: userJoin] User Joined: ", message);
+        });
+
+        socket.on("userLeave", (message) => {
+          console.log("[Socket: userLeave] User Left: ", message);
+        });
+
         socket.on("error", (error) => console.error(error));
       } else {
         console.log("[ChatroomPage] User is not logged in.");
@@ -69,7 +77,6 @@ export const ChatroomPage = () => {
         socketRef.current.off("connect");
         socketRef.current.off("initialMessage");
         socketRef.current.off("message");
-        socketRef.current.emit("leave", { chatroom_id: chatroomId });
         socketRef.current.disconnect();
         console.log(
           "[useEffect Disconnect] Disconnected from socket.io server!"
@@ -92,9 +99,12 @@ export const ChatroomPage = () => {
 
   const handleLeaveChatroom = () => {
     if (socketRef.current) {
-      socketRef.current.emit("leave", { chatroom_id: chatroomId });
-      socketRef.current.disconnect();
-      navigate("/chat");
+      if (window.confirm("정말 나가시겠습니까?")) {
+        socketRef.current.emit("leave", { chatroom_id: chatroomId });
+        socketRef.current.disconnect();
+        console.error("[handleLeaveChatroom] ${chatroomId} 채팅방을 나갑니다.");
+        navigate("/chat");
+      }
     }
   };
 

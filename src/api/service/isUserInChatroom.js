@@ -8,11 +8,12 @@ export const isUserInChatroom = async (chatroomId) => {
       (chatroom) => chatroom.id === parseInt(chatroomId)
     );
     console.log(
-      "[ChatroomPage] 채팅방이 존재하는지 확인합니다. : ",
+      "[ChatroomPage] 사용자가 접속해있는 채팅방에 포함되는지 확인합니다. : ",
       chatroomExists
     );
     if (!chatroomExists) {
       console.error("권한이 없습니다.");
+      alert("해당 채팅방에 접근할 권한이 없습니다.");
       return false;
     }
     return true;

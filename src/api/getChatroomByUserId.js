@@ -1,9 +1,9 @@
-import axios from "axios";
+import meet from "./checkAuthorized.js";
 import { GET_CHATROOM_BY_USER_ID } from "./config";
 
 export const getChatroomByUserId = async () => {
   try {
-    const response = await axios.get(GET_CHATROOM_BY_USER_ID, {
+    const response = await meet.get(GET_CHATROOM_BY_USER_ID, {
       withCredentials: true,
     });
 
