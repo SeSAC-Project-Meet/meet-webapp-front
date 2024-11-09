@@ -13,7 +13,12 @@ export const MainPage = () => {
 
   const handleCreateChatroom = async () => {
     // TODO : name 변경 필요
-    const chatroom = await createChatroom({ name: "chatroom" });
+    const name = prompt("채팅방 이름을 입력하세요: ");
+    if (!name) {
+      alert("채팅방 이름을 입력하셔야 합니다.");
+      return;
+    }
+    const chatroom = await createChatroom({ name });
     console.log(chatroom);
     alert(
       `Chatroom ID: ${chatroom.chatroom_id}\nUser Chatroom ID: ${chatroom.user_chatroom_id}`
@@ -21,7 +26,7 @@ export const MainPage = () => {
   };
 
   useEffect(() => {
-    if (!user) {
+    if (!user?.user_id) {
       navigate("/login");
     }
   }, [user, navigate]);
