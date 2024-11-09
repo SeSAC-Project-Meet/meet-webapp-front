@@ -12,12 +12,9 @@ import { ChatPage } from "./pages/chat/ChatPage";
 import { ChatroomPage } from "./pages/chat/ChatroomPage";
 import { VideoCallPage } from "./pages/videocall/VideoCallPage";
 import { GroupCallPage } from "./pages/videocall/GroupCallPage";
-<<<<<<< HEAD
 import { MeetPage } from "./pages/meet/MeetPage";
 import { MeetroomPage } from "./pages/meet/MeetroomPage";
-=======
 import { SetSpecificProfilePage } from "./pages/register/SetSpecificProfilePage";
->>>>>>> 780557f (Refactor: add axios interceptor)
 
 function App() {
   return (
@@ -46,7 +43,7 @@ function App() {
 
           <Route path="/videocall" element={<VideoCallPage />} />
           <Route path="/groupcall" element={<GroupCallPage />} />
-          
+
           <Route path="/meet" element={<MeetPage />} />
           <Route path="/meet/:meetroomId" element={<MeetroomPage />} />
         </Routes>
