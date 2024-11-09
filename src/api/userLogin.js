@@ -1,28 +1,23 @@
-import axios from "axios";
+import meet from "./checkAuthorized.js";
 import { USER_LOGIN } from "./config";
 
 export const userLogin = async (loginID, password) => {
-  const response = await axios.post(
-    USER_LOGIN,
-    {
-      loginID: loginID,
-      password: password,
-    },
-    { withCredentials: true }
-  );
+  try {
+    const response = await meet.post(
+      USER_LOGIN,
+      {
+        loginID: loginID,
+        password: password,
+      },
+      { withCredentials: true }
+    );
 
-  // const { accessToken, refreshToken } = response.data;
-  // setTokensToLocalStorage(accessToken, refreshToken);
+    console.log("response : ", response.data);
+    const { user_id, username } = response.data.user;
 
-  // console.log(`accessToken: ${accessToken}, refreshToken: ${refreshToken}`);
-  console.log("response : ", response.data);
-  const { username } = response.data.user;
-
-  return username;
+    return { user_id, username };
+  } catch (error) {
+    console.error("Error during user login:", error);
+    throw error;
+  }
 };
-
-/*
-response : 
-accessToken :
-refreshToken :
-*/

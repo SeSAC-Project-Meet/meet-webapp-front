@@ -8,7 +8,7 @@ export function PhoneLoginButton() {
   return (
     <button
       type="button"
-      className="w-full flex px-4 py-2 items-center justify-center text-text-primary bg-white rounded-md hover:bg-gray-100" // 색상 변경
+      className="shadow-md w-full flex px-4 py-2 items-center justify-center text-text-primary bg-white rounded-md hover:bg-gray-100" // 색상 변경
       onClick={handlePhoneLogin}
     >
       <div className="w-6 h-6 mr-4">

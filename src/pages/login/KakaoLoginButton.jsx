@@ -13,14 +13,14 @@ export function KakaoLoginButton() {
       if (user.status) {
         // 로그인 성공
         console.log("[kakao-login] Found user : ", user.user);
-        setUser(user.user.username);
+        setUser({ user_id: user.user.user_id, username: user.user.username });
         navigate("/");
       } else {
         // 로그인 실패
-        console.log("[kakao-login] Unregistered user : ", user);
+        console.log("[kakao-login] Unregistered user : ", user.user);
         // 회원가입 페이지로 리다이렉트
         navigate("/register/terms", {
-          state: { type: "kakao", user: user.user },
+          state: { type: "kakao", user: user.user.email },
         });
       }
     } catch (err) {
@@ -32,7 +32,7 @@ export function KakaoLoginButton() {
     <button
       type="button"
       onClick={handleKakaoLogin}
-      className="w-full flex px-4 py-2 items-center justify-center text-text-primary bg-[#fee500] rounded-md hover:bg-yellow-400" // 색상 변경
+      className="w-full shadow-md flex px-4 py-2 items-center justify-center text-text-primary bg-[#fee500] rounded-md hover:bg-yellow-400" // 색상 변경
     >
       <div className="w-6 h-6 mr-3">
         <img src="/images/kakaoLoginButton.svg" />

@@ -8,12 +8,12 @@ export const TermsPage = () => {
   const [agreeAll, setAgreeAll] = useState(false); // 전체 동의 상태
   const [agreeTerms, setAgreeTerms] = useState({}); // 각 약관 동의 상태
   const location = useLocation();
-  const [prevState, setPrevState] = useState({});
+  const [prevState, setPrevState] = useState("");
 
   useEffect(() => {
     console.log("location : ", location.state);
     if (location.state?.type === "kakao") {
-      setPrevState(location.state?.user || {});
+      setPrevState(location.state?.user || "");
       console.log("prevState : ", prevState);
     }
     const fetchTerms = async () => {
@@ -31,7 +31,7 @@ export const TermsPage = () => {
     };
 
     fetchTerms(); // 비동기 함수 호출
-  }, [location.state, prevState]); // 빈 배열로 설정하여 컴포넌트가 처음 마운트될 때만 실행
+  }, []); // 빈 배열로 설정하여 컴포넌트가 처음 마운트될 때만 실행
 
   // 전체 동의 상태 변경
   const handleAgreeAllChange = () => {
@@ -68,7 +68,8 @@ export const TermsPage = () => {
   const navigate = useNavigate();
   const handleContinueRegister = () => {
     console.log("동의한 약관 : ", agreeTerms);
-    navigate("/register", { state: { ...prevState, agreeTerms } });
+    console.log("prevState before continue : ", prevState);
+    navigate("/register", { state: { email: prevState, agreeTerms } });
   };
 
   return (

@@ -1,6 +1,23 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { checkUniqueValue } from "../api/checkUniqueValue";
 
+/**
+ * CustomInputFieldWithLabel 입력란
+ *
+ * @param {Object} props - The properties object.
+ * @param {string} props.className - The CSS class for the container div.
+ * @param {string} props.label - The label text for the input field.
+ * @param {string} props.type - The type of the input field (e.g., "text", "email").
+ * @param {string} props.placeholder - The placeholder text for the input field.
+ * @param {boolean} props.disabled - Whether the input field is disabled.
+ * @param {string} props.getter - The current value of the input field.
+ * @param {Function} props.setter - The function to update the value of the input field.
+ * @param {boolean} props.checkUnique - Whether to show the unique value check button.
+ * @param {string} props.checkDataType - The data type to check for uniqueness.
+ * @param {Function} props.isUniqueSetter - The function to set the uniqueness status.
+ *
+ * @returns {JSX.Element} The rendered CustomInputFieldWithLabel component.
+ */
 export const CustomInputFieldWithLabel = ({
   className,
   label,
@@ -43,7 +60,7 @@ export const CustomInputFieldWithLabel = ({
           className={`mt-1 block w-full px-4 py-2 border border-input-border rounded-md ${
             disabled ? "bg-gray-200" : "bg-input-bg"
           } hover:outline hover:outline-1 hover:outline-input-border-hover focus:outline-none focus:ring focus:ring-1 focus:ring-input-border-focused`}
-          placeholder={disabled ? "사용할 수 없습니다." : placeholder} // disabled일 때 placeholder 메시지 수정
+          placeholder={disabled ? getter : placeholder} // disabled일 때 placeholder 메시지 수정
           disabled={disabled}
         />
         {checkUnique && (
