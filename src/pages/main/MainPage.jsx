@@ -14,11 +14,21 @@ export const MainPage = () => {
 
   const handleCreateChatroom = async () => {
     // TODO : name 변경 필요
-    const chatroom = await createChatroom({ name: "chatroom" });
-    console.log(chatroom);
-    alert(
-      `Chatroom ID: ${chatroom.chatroom_id}\nUser Chatroom ID: ${chatroom.user_chatroom_id}`
-    );
+    const name = prompt("채팅방 이름을 입력하세요: ");
+    if (!name) {
+      alert("채팅방 이름을 입력하셔야 합니다.");
+      return;
+    }
+    try {
+      const chatroom = await createChatroom({ name });
+      console.log(chatroom);
+      alert(
+        `Chatroom ID: ${chatroom.chatroom_id}\nUser Chatroom ID: ${chatroom.user_chatroom_id}`
+      );
+    } catch (error) {
+      console.error(error);
+      alert("채팅방 생성에 실패했습니다.");
+    }
   };
 
   const handleCreateMeetroom = async () => {
@@ -31,7 +41,10 @@ export const MainPage = () => {
   };
 
   useEffect(() => {
-    if (!user) {
+    if (!user?.user_id) {
+      console.log(
+        "메인페이지: 사용자 정보가 없어서 로그인 페이지로 이동합니다."
+      );
       navigate("/login");
     }
   }, [user, navigate]);
