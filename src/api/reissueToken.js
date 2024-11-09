@@ -1,22 +1,22 @@
-import axios from "axios";
+import meet from "./checkAuthorized.js";
 import { POST_REISSUE_TOKEN } from "./config";
 import { setTokensToLocalStorage } from "../services/setTokensToLocalStorage";
 
 export const reissueToken = async (accessToken, refreshToken) => {
-  const response = await axios.post(POST_REISSUE_TOKEN, {
-    Headers: {
-      Authorization: `Bearer ${accessToken}`,
-      "Refresh-Token": refreshToken,
-    },
-  });
+  try {
+    const response = await meet.post(POST_REISSUE_TOKEN, {
+      Headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Refresh-Token": refreshToken,
+      },
+    });
 
-  const { newAccessToken, newRefreshToken } = response.data;
-  setTokensToLocalStorage(newAccessToken, newRefreshToken);
+    const { newAccessToken, newRefreshToken } = response.data;
+    setTokensToLocalStorage(newAccessToken, newRefreshToken);
 
-  // remove this line
-  console.log(
-    `accessToken: ${newAccessToken}, refreshToken: ${newRefreshToken}`
-  );
-
-  return true;
+    return true;
+  } catch (error) {
+    console.error("Error reissuing token:", error);
+    return false;
+  }
 };

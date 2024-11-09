@@ -1,9 +1,9 @@
-import axios from "axios";
+import meet from "./checkAuthorized.js";
 import { GET_USER_PROFILE } from "./config";
 
 export const getUserProfile = async () => {
   try {
-    const response = await axios.get(GET_USER_PROFILE, {
+    const response = await meet.get(GET_USER_PROFILE, {
       withCredentials: true, // 쿠키를 포함하도록 설정
     });
 
@@ -24,9 +24,3 @@ export const getUserProfile = async () => {
     return null; // 오류 발생 시 null 반환
   }
 };
-
-/*
-response : 
-accessToken :
-refreshToken :
-*/

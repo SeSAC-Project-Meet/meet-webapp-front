@@ -1,9 +1,9 @@
-import axios from "axios";
+import meet from "./checkAuthorized.js";
 import { GET_TERMS } from "./config";
 
 export const getTerms = async () => {
   try {
-    const response = await axios.get(GET_TERMS);
+    const response = await meet.get(GET_TERMS);
 
     console.log("Terms Response:", response.data);
 

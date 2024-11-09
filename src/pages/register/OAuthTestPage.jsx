@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import axios from "axios";
+import axios from "./checkAuthorized.js";
 
 const OAuthTestPage = () => {
   // 카카오 로그인 처리 함수

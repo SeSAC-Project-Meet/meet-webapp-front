@@ -1,11 +1,11 @@
-import axios from "axios";
+import meet from "./checkAuthorized.js";
 import { USER_REGISTER } from "./config";
 
 export const userRegister = async (data) => {
   const { name, email, phone_number, password } = data;
 
   try {
-    await axios.post(USER_REGISTER, {
+    await meet.post(USER_REGISTER, {
       name,
       email,
       phone_number,

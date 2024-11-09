@@ -1,9 +1,9 @@
-import axios from "axios";
+import meet from "./checkAuthorized.js";
 import { CREATE_CHATROOM } from "./config";
 
 export const createChatroom = async (chatroom) => {
   try {
-    const response = await axios.post(CREATE_CHATROOM, chatroom, {
+    const response = await meet.post(CREATE_CHATROOM, chatroom, {
       withCredentials: true,
     });
 
