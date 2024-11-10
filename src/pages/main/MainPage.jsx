@@ -47,6 +47,7 @@ export const MainPage = () => {
   //     navigate("/login");
   //   }
   // }, [user, navigate]);
+  // TEST
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-500 to-purple-600 p-8">

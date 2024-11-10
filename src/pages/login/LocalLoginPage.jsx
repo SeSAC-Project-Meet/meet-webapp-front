@@ -1,55 +1,40 @@
-import { useState } from "react";
-import { userLogin } from "../../api/userLogin";
+import { useState, useEffect } from "react";
+import { handleUserLogin } from "../../api/userLogin";
 import { useNavigate } from "react-router-dom";
 
 import { useUser } from "../../contexts/UserContext";
 import { CustomInputFieldWithLabel } from "../../components/CustomInputFieldWithLabel";
 import { CustomSubmitButton } from "../../components/CustomSubmitButton";
 import { CustomPwFieldWithCheck } from "../../components/CustomPwFieldWithCheck";
+import useFormattedPhoneNumber from "../../hooks/useFormattedPhoneNumber";
 
 export const LocalLoginPage = () => {
-  const [loginID, setLoginID] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordError, setPasswordError] = useState("");
   const navigate = useNavigate("");
 
   const { user, setUser } = useUser();
 
-  const validatePassword = (password) => {
-    // if (password.length < 8) {
-    //   return "비밀번호는 최소 8자 이상이어야 합니다.";
-    // }
-    // if (!/^[a-zA-Z0-9!@#$%^&*()_+[\]{};':"\\|,.<>/?-]+$/.test(password)) {
-    //   return "비밀번호는 영문, 숫자, 특수문자만으로 구성되어야 합니다.";
-    // }
-    // if (!/\d/.test(password)) {
-    //   return "비밀번호에는 최소 하나의 숫자가 포함되어야 합니다.";
-    // }
-    return "";
-  };
+  useEffect(() => {
+    if (password.includes(" ") || /[ㄱ-ㅎㅏ-ㅣ가-힣]/.test(password)) {
+      setPassword(password.replace(/[\sㄱ-ㅎㅏ-ㅣ가-힣]/g, ""));
+    }
+  }, [password]);
+
+  useFormattedPhoneNumber(phoneNumber, setPhoneNumber);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const error = validatePassword(password);
-    if (error) {
-      setPasswordError(error);
+
+    const checked_user = await handleUserLogin(phoneNumber, password);
+    if (checked_user) {
+      setUser(checked_user);
+      console.log("[LocalLoginPage] user : ", user, checked_user);
+      alert(`환영합니다, ${checked_user.username} 님!`);
+      navigate("/");
     } else {
-      setPasswordError("");
-      // console.log("로그인 시도:", { loginID, password });
-      // alert(`로그인 시도!\n이메일 : ${loginID}\n비밀번호 : ${password}`);
-      try {
-        const checked_user = await userLogin(loginID, password);
-        setUser(checked_user);
-        console.log("[LocalLoginPage] user : ", user, checked_user);
-        alert(`환영합니다, ${checked_user.username} 님!`);
-        navigate("/");
-      } catch (err) {
-        // console.error(err);
-        // 실패시 state 공백화
-        setLoginID("");
-        setPassword("");
-        alert(`로그인 실패!\nError : ${err}`);
-      }
+      setPhoneNumber("");
+      setPassword("");
     }
   };
 
@@ -64,8 +49,8 @@ export const LocalLoginPage = () => {
             label="전화번호"
             type="text"
             placeholder="전화번호를 입력하세요"
-            getter={loginID}
-            setter={setLoginID}
+            getter={phoneNumber}
+            setter={setPhoneNumber}
           />
 
           <div>
@@ -73,11 +58,7 @@ export const LocalLoginPage = () => {
               비밀번호
             </label>
 
-            <CustomPwFieldWithCheck
-              getter={password}
-              setter={setPassword}
-              errGetter={passwordError}
-            />
+            <CustomPwFieldWithCheck getter={password} setter={setPassword} />
           </div>
           <div className="flex justify-end space-x-2 text-sm text-text-secondary">
             <button
