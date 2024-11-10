@@ -1,4 +1,4 @@
-import meet from "./checkAuthorized.js";
+import meet from "./axiosInterceptor.js";
 import { GET_TERMS } from "./config";
 
 export const getTerms = async () => {

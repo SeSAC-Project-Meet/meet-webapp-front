@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import io from "socket.io-client";
 import { useUser } from "../../contexts/UserContext";
 import { SOCKET_URL } from "../../api/config";
-import { isUserInChatroom } from "../../api/service/isUserInChatroom";
+import { isUserInChatroom } from "../../api/services/isUserInChatroom";
 
 export const ChatroomPage = () => {
   const { chatroomId } = useParams();
@@ -115,7 +115,7 @@ export const ChatroomPage = () => {
       }
     }
   };
-  
+
   const messagesEndRef = useRef(null);
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });

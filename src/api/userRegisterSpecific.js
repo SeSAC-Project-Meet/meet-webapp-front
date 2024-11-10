@@ -1,4 +1,4 @@
-import meet from "./checkAuthorized";
+import meet from "./axiosInterceptor";
 import { USER_REGISTER_SPECIFIC } from "./config";
 
 export const userRegisterSpecific = async (

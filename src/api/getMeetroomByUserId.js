@@ -3,9 +3,7 @@ import { GET_MEETROOM_BY_USER_ID } from "./config";
 
 export const getMeetroomByUserId = async () => {
   try {
-    const response = await axios.get(GET_MEETROOM_BY_USER_ID, {
-      withCredentials: true,
-    });
+    const response = await axios.get(GET_MEETROOM_BY_USER_ID);
 
     console.log("Meetroom Response:", response.data);
 

@@ -5,21 +5,25 @@ const meet = axios.create({
   timeout: 1000,
 });
 
-// Add a request interceptor
-// meet.interceptors.request.use(
-//   (config) => {
-//     // Add authorization token to headers before the request is sent
-//     const token = localStorage.getItem("authToken");
-//     if (token) {
-//       config.headers.Authorization = `Bearer ${token}`;
-//     }
-//     return config;
-//   },
-//   (error) => {
-//     // Do something with request error
-//     return Promise.reject(error);
-//   }
-// );
+// Add a request interceptor to include withCredentials
+meet.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("MEET_ACCESS_TOKEN");
+    if (token) {
+      console.log("[axios intercepter] Header에 AccessToken을 포함합니다.");
+      config.headers.Authorization = `Bearer ${token}`;
+    } else {
+      console.error(
+        "[axios intercepter] LocalStorage에 AccessToken이 없습니다."
+      );
+    }
+    config.withCredentials = true;
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 // Add a response interceptor
 meet.interceptors.response.use(
@@ -39,7 +43,9 @@ meet.interceptors.response.use(
         currentLocation !== "/login/local" &&
         currentLocation !== "/register"
       ) {
-        console.error("401 Unauthorized access, 로그인 페이지로 이동합니다.");
+        console.error(
+          "[axios intercepter] 401 Unauthorized access, 로그인 페이지로 이동합니다."
+        );
         window.location.href = "/login";
       }
     }
