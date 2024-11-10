@@ -51,7 +51,7 @@ export const ChatPage = () => {
       alert("채팅방 생성에 실패했습니다.");
     }
   };
-
+  
   return (
     <div className="flex flex-col items-center bg-bg-primary min-h-screen">
       <h1 className="font-primary text-2xl font-bold text-center mt-6 p-4 text-gray-800">

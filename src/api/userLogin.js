@@ -15,6 +15,7 @@ export const handleUserLogin = async (loginID, password) => {
     console.log("response : ", response.data);
     const { user_id, username } = response.data.user;
 
+
     return { user_id, username };
   } catch (error) {
     if (error.response.status === 401) {

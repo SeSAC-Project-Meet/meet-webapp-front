@@ -17,7 +17,6 @@ const useUserProfile = () => {
         setError(err);
       }
     };
-
     fetchUserProfile();
     console.log(
       `[useUserProfile] 유저 정보를 가져왔습니다.\nStrictMode가 아니면 한 번만 로드되어야 합니다.\nUserProfile : ${userProfile}`
