@@ -20,6 +20,12 @@ const useFormattedPhoneNumber = (phoneNumber, setPhoneNumber) => {
           return `${numbers.slice(0, 3)}-${numbers.slice(3, 6)}-${numbers.slice(6, 10)}`;
         } else {
           // '010-1234-5678' 형식
+          if (numbers.length == 7) {
+            if (value.length === 9) {
+              return `${numbers.slice(0, 3)}-${numbers.slice(3, 7)}`;
+            }
+            return `${numbers.slice(0, 3)}-${numbers.slice(3, 7)}`;
+          }
           return `${numbers.slice(0, 3)}-${numbers.slice(3, 7)}-${numbers.slice(7, 11)}`;
         }
       } else {
