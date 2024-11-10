@@ -1,11 +1,9 @@
-import meet from "./checkAuthorized.js";
+import meet from "./axiosInterceptor.js";
 import { CREATE_CHATROOM } from "./config";
 
 export const createChatroom = async (chatroom) => {
   try {
-    const response = await meet.post(CREATE_CHATROOM, chatroom, {
-      withCredentials: true,
-    });
+    const response = await meet.post(CREATE_CHATROOM, chatroom);
 
     console.log("Chatroom Response:", response.data);
     const { user_chatroom_id, chatroom_id } = response.data;

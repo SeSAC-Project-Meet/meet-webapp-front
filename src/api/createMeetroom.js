@@ -3,9 +3,7 @@ import { CREATE_MEETROOM } from "./config";
 
 export const createMeetroom = async (meetroom) => {
   try {
-    const response = await axios.post(CREATE_MEETROOM, meetroom, {
-      withCredentials: true,
-    });
+    const response = await axios.post(CREATE_MEETROOM, meetroom);
 
     console.log("Meetroom Response:", response.data);
     const { user_meetroom_id, meetroom_id } = response.data;

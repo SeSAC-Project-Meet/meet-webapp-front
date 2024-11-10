@@ -1,14 +1,15 @@
-import meet from "./checkAuthorized.js";
+import meet from "./axiosInterceptor.js";
 import { GET_USER_PROFILE } from "./config";
 
 export const getUserProfile = async () => {
   try {
-    const response = await meet.get(GET_USER_PROFILE, {
-      withCredentials: true, // 쿠키를 포함하도록 설정
-    });
+    const response = await meet.get(GET_USER_PROFILE);
 
     // TODO: response가 무엇을 가지고 오는지 확인
-    console.log("Get User Profile Response:", response.data);
+    console.log(
+      "[getUserProfile] 사용자 프로필을 가지고 옵니다:",
+      response.data
+    );
     const { username, user_id } = response.data;
 
     return { username, user_id }; // username을 반환

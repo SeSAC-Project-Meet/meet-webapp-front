@@ -1,20 +1,21 @@
-import meet from "./checkAuthorized.js";
-import { USER_LOGIN } from "./config";
+import { setAccessTokenToLocalStorage } from "../services/setAccessTokenToLocalStorage.js";
+import meet from "./axiosInterceptor.js";
+import { USER_LOGIN } from "./config.js";
 
 export const handleUserLogin = async (loginID, password) => {
   try {
-    const response = await meet.post(
-      USER_LOGIN,
-      {
-        loginID: loginID,
-        password: password,
-      },
-      { withCredentials: true }
-    );
+    const response = await meet.post(USER_LOGIN, {
+      loginID: loginID,
+      password: password,
+    });
 
     console.log("response : ", response.data);
-    const { user_id, username } = response.data.user;
-
+    const { token, user, message } = response.data;
+    const { user_id, username } = user;
+    setAccessTokenToLocalStorage(token);
+    console.log(
+      `[handleUserLogin] 서버 메세지 : ${message}\n사용자명 ${username} 로그인 성공!`
+    );
 
     return { user_id, username };
   } catch (error) {

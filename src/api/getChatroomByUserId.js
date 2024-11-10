@@ -1,11 +1,9 @@
-import meet from "./checkAuthorized.js";
+import meet from "./axiosInterceptor.js";
 import { GET_CHATROOM_BY_USER_ID } from "./config";
 
 export const getChatroomByUserId = async () => {
   try {
-    const response = await meet.get(GET_CHATROOM_BY_USER_ID, {
-      withCredentials: true,
-    });
+    const response = await meet.get(GET_CHATROOM_BY_USER_ID);
 
     console.log(
       "[getChatroomByUserId] 토큰으로 유저 아이디를 추출해, 현재 들어가있는 채팅방을 보여줍니다 :",

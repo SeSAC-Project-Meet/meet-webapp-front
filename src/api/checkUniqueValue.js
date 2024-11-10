@@ -1,4 +1,4 @@
-import meet from "./checkAuthorized.js";
+import meet from "./axiosInterceptor.js";
 import { CHECK_UNIQUE } from "./config";
 
 const validatePhoneNumberFormat = (phoneNumber) => {

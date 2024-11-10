@@ -15,7 +15,9 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     if (userProfile) {
       setUser(() => userProfile);
-      console.log("[UserContext] useEffect User: ", userProfile);
+      console.log(
+        `[UserContext] useUserProfile에서 정보를 가지고 왔습니다.\nUserProfile: ${JSON.stringify(userProfile, null, 2)}) User: ${JSON.stringify(user, null, 2)}`
+      );
     }
     const timer = setTimeout(() => {
       if (userProfile && location.pathname === "/login") {
@@ -28,7 +30,7 @@ export const UserProvider = ({ children }) => {
         location.pathname !== "/login/local" &&
         location.pathname !== "/register"
       ) {
-        // 프로필이 없거나, 로그인페이지가 아니거나, 회원가입 페이지가 아니면
+        // 프로필이 없는데, 로그인페이지가 아니거나, 회원가입 페이지가 아니면
         // 로그인 페이지로 ㄱㄱ
         console.log("[UserContext] 사용자 정보가 없어서 로그인 페이지로 이동");
         navigate("/login");

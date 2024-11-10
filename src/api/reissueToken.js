@@ -1,18 +1,20 @@
-import meet from "./checkAuthorized.js";
-import { POST_REISSUE_TOKEN } from "./config";
-import { setTokensToLocalStorage } from "../services/setTokensToLocalStorage";
+import meet from "./axiosInterceptor.js";
+import { REISSUE_TOKEN } from "./config";
+import { setAccessTokenToLocalStorage } from "../services/setAccessTokenToLocalStorage.js";
 
-export const reissueToken = async (accessToken, refreshToken) => {
+export const reissueToken = async () => {
   try {
-    const response = await meet.post(POST_REISSUE_TOKEN, {
-      Headers: {
-        Authorization: `Bearer ${accessToken}`,
-        "Refresh-Token": refreshToken,
-      },
-    });
+    console.log("[reissueToken] 토큰 재발급 요청 중...");
+    const response = await meet.get(REISSUE_TOKEN);
 
-    const { newAccessToken, newRefreshToken } = response.data;
-    setTokensToLocalStorage(newAccessToken, newRefreshToken);
+    const { token, user } = response.data;
+    const { user_id, username } = user;
+    setAccessTokenToLocalStorage(token);
+    console.log(`
+      [reissueToken] Token Reissued, 사용자 정보:\n
+      user_id: ${user_id}\n
+      username: ${username}
+    `);
 
     return true;
   } catch (error) {

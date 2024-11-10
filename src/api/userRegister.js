@@ -1,4 +1,4 @@
-import meet from "./checkAuthorized.js";
+import meet from "./axiosInterceptor.js";
 import { USER_REGISTER } from "./config";
 
 export const userRegister = async (data) => {
