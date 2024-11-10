@@ -29,15 +29,28 @@ export const CustomInputFieldWithLabel = ({
   checkUnique,
   checkDataType,
   isUniqueSetter,
+  checkFormat,
+  checkFormatGetter,
+  required,
+  uniqueTrueMessage,
+  uniqueFalseMessage,
 }) => {
   const [isValid, setIsValid] = useState(false);
   const [verificationClicked, setVerificationClicked] = useState(false);
+  const [verificationMessage, setVerificationMessage] = useState("");
   const handleValidationClick = async () => {
     const result = await checkUniqueValue(checkDataType, getter);
-    console.log("result : ", result);
-    setIsValid(result);
+    console.log("[inputField] 중복확인 결과 : ", result);
     setVerificationClicked(true);
-    isUniqueSetter(result);
+    if (typeof result === "string") {
+      console.log("[inputField] 중복확인 결과, 형식 오류입니다. : ", result);
+      setVerificationMessage(result);
+      isUniqueSetter(false);
+      setIsValid(false);
+    } else {
+      isUniqueSetter(result);
+      setIsValid(result);
+    }
   };
 
   return (
@@ -56,7 +69,7 @@ export const CustomInputFieldWithLabel = ({
           id={label}
           value={getter}
           onChange={(e) => setter(e.target.value)}
-          required
+          required={required ? true : false}
           className={`mt-1 block w-full px-4 py-2 border border-input-border rounded-md ${
             disabled ? "bg-gray-200" : "bg-input-bg"
           } hover:outline hover:outline-1 hover:outline-input-border-hover focus:outline-none focus:ring focus:ring-1 focus:ring-input-border-focused`}
@@ -80,9 +93,18 @@ export const CustomInputFieldWithLabel = ({
           }`}
         >
           {isValid
-            ? "사용이 가능한 값입니다."
-            : "이미 사용중이거나 불가능한 값입니다."}
+            ? uniqueTrueMessage
+              ? uniqueTrueMessage
+              : "사용이 가능한 값입니다."
+            : verificationMessage
+              ? verificationMessage
+              : uniqueFalseMessage
+                ? uniqueFalseMessage
+                : "이미 사용중이거나 불가능한 값입니다."}
         </p>
+      )}
+      {checkFormat && (
+        <p className="mt-1 text-sm text-red-500">{checkFormatGetter}</p>
       )}
     </div>
   );
