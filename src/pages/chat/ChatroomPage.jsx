@@ -39,6 +39,14 @@ export const ChatroomPage = () => {
         const socket = io(SOCKET_URL, { withCredentials: true });
         socketRef.current = socket;
 
+        socket.on("unauthorized", (msg) => {
+          console.error(
+            "[Socket: Unauthorized] 소켓 연결을 끊습니다.. 사유 : ",
+            msg
+          );
+          socket.disconnect();
+        });
+
         setLoading(false);
         socket.on("connect", () => {
           console.log("[Socket: connect] Chatroom ID: ", chatroomId);
@@ -83,7 +91,7 @@ export const ChatroomPage = () => {
         );
       }
     };
-  }, [user]);
+  }, [user, socketRef]);
 
   const handleSendMessage = () => {
     if (newMessage.trim() && socketRef.current) {
@@ -116,22 +124,32 @@ export const ChatroomPage = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+  // ... 이전 imports와 상태 관리 코드는 동일 ...
 
   return (
     <div>
       {!loading && (
-        <div className="flex flex-col h-screen bg-gradient-to-b from-white to-blue-300">
-          <div className="bg-blue-600 text-white p-4 text-center font-bold text-lg shadow-md">
-            {chatroomName}
+        <div className="flex flex-col h-screen bg-white">
+          {/* 헤더 */}
+          <div className="border-b border-gray-200 px-4 py-3 flex items-center">
+            <div className="flex items-center flex-1">
+              <div className="w-8 h-8 rounded-full bg-gray-200 mr-3">
+                {/* 채팅방 이미지를 넣어야 합니다
+                1ㄷ1 채팅의 경우 상대방 이미지를,
+                그룹 채팅의 경우 따로 처리하는 로직까지만 */}
+              </div>
+              <span className="font-semibold">{chatroomName}</span>
+            </div>
             <button
               onClick={handleLeaveChatroom}
-              className="float-right bg-red-500 text-white px-2 py-1 rounded-lg hover:bg-red-600 transition"
+              className="text-red-500 hover:text-red-600 transition"
             >
               나가기
             </button>
           </div>
 
-          <div className="flex-1 overflow-y-auto p-4 space-y-4">
+          {/* 메시지 영역 */}
+          <div className="flex-1 overflow-y-auto px-4 py-2 space-y-2">
             {messages.length > 0 ? (
               messages.map((message, index) => (
                 <div
@@ -142,18 +160,18 @@ export const ChatroomPage = () => {
                       : "justify-start"
                   }`}
                 >
+                  {message.user_id !== user.user_id && (
+                    <div className="w-6 h-6 rounded-full bg-gray-200 mr-2 flex-shrink-0 self-end"></div>
+                  )}
                   <div
-                    className={`max-w-[70%] rounded-lg p-3 ${
+                    className={`max-w-[60%] rounded-2xl px-4 py-2 ${
                       message.user_id === user.user_id
                         ? "bg-blue-500 text-white"
-                        : "bg-gray-300 text-black"
-                    } shadow-lg transition-transform transform hover:scale-105`}
+                        : "bg-gray-100"
+                    }`}
                   >
-                    <p className="text-sm font-semibold">
-                      From :{message.user_id}
-                    </p>
-                    <p className="break-words">{message.text}</p>
-                    <p className="text-xs mt-1 opacity-70">
+                    <p className="text-sm break-words">{message.text}</p>
+                    <p className="text-[10px] mt-1 opacity-60">
                       {new Date(message.created_at).toLocaleTimeString([], {
                         hour: "2-digit",
                         minute: "2-digit",
@@ -164,33 +182,39 @@ export const ChatroomPage = () => {
                 </div>
               ))
             ) : (
-              <p className="text-center text-gray-500">
-                수신된 메시지가 없습니다.
+              <p className="text-center text-gray-400 py-4">
+                메시지가 없습니다.
               </p>
             )}
             <div ref={messagesEndRef} />
           </div>
 
+          {/* 메시지 입력 영역 */}
           <form
             onSubmit={(e) => {
               e.preventDefault();
               handleSendMessage();
             }}
-            className="p-4 bg-white border-t flex items-center shadow-md"
+            className="border-t border-gray-200 p-4"
           >
-            <input
-              type="text"
-              value={newMessage}
-              onChange={(e) => setNewMessage(e.target.value)}
-              placeholder="메시지를 입력하세요..."
-              className="flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            <button
-              type="submit"
-              className="ml-3 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
-            >
-              전송
-            </button>
+            <div className="flex items-center bg-gray-100 rounded-full px-4 py-2">
+              <input
+                type="text"
+                value={newMessage}
+                onChange={(e) => setNewMessage(e.target.value)}
+                placeholder="메시지 보내기..."
+                className="flex-1 bg-transparent outline-none text-sm"
+              />
+              <button
+                type="submit"
+                className={`ml-2 text-blue-500 font-semibold ${
+                  !newMessage.trim() ? "opacity-50" : "hover:text-blue-600"
+                }`}
+                disabled={!newMessage.trim()}
+              >
+                보내기
+              </button>
+            </div>
           </form>
         </div>
       )}

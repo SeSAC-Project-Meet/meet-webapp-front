@@ -1,6 +1,11 @@
 import { useState } from "react";
 
-export const CustomPwFieldWithCheck = ({ getter, setter, errGetter }) => {
+export const CustomPwFieldWithCheck = ({
+  getter,
+  setter,
+  errGetter,
+  required,
+}) => {
   const [showPassword, setShowPassword] = useState();
   return (
     <div>
@@ -11,7 +16,7 @@ export const CustomPwFieldWithCheck = ({ getter, setter, errGetter }) => {
           placeholder="비밀번호를 입력하세요"
           onChange={(e) => setter(e.target.value)}
           className="w-full px-4 py-2 bg-input-bg border border-input-border rounded-md hover:outline hover:outline-1 hover:outline-input-border-hover focus:outline-none focus:ring focus:ring-1 focus:ring-input-border-focused"
-          required
+          required={required ? true : false}
         />
         <button
           type="button"

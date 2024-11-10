@@ -1,4 +1,4 @@
-export const CustomSubmitButton = ({ text, isDisabled }) => {
+export const CustomSubmitButton = ({ text, isDisabled, disabledText }) => {
   return (
     <button
       type="submit"
@@ -9,7 +9,7 @@ export const CustomSubmitButton = ({ text, isDisabled }) => {
           : "text-text-primary bg-button-bg-primary hover:bg-button-bg-hover" // 활성화 상태
       }`}
     >
-      {text}
+      {isDisabled ? disabledText : text}
     </button>
   );
 };
