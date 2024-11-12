@@ -6,7 +6,7 @@ export function KakaoLoginButton() {
   const navigate = useNavigate();
   const { setUser } = useUser();
 
-  const handleKakaoLogin = async () => {
+  const handleKakaoLoginClick = async () => {
     try {
       const user = await handleKakaoLogin();
       console.log("[kakao-login] user : ", user);
@@ -31,7 +31,7 @@ export function KakaoLoginButton() {
   return (
     <button
       type="button"
-      onClick={handleKakaoLogin}
+      onClick={handleKakaoLoginClick}
       className="w-full shadow-md flex px-4 py-2 items-center justify-center text-text-primary bg-[#fee500] rounded-md hover:bg-yellow-400" // 색상 변경
     >
       <div className="w-6 h-6 mr-3">

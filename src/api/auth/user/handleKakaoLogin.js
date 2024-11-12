@@ -1,11 +1,11 @@
-import { API_URL, KAKAO_LOGIN } from "../../config.js";
+import { BASE_URL, KAKAO_LOGIN } from "../../config.js";
 
 export const handleKakaoLogin = () => {
   return new Promise((resolve) => {
     window.open(KAKAO_LOGIN, "resizable=no,location=no,scrollbars=yes");
 
     const messageHandler = (event) => {
-      const allowedOrigins = [API_URL, "http://localhost:5173"];
+      const allowedOrigins = [BASE_URL, "http://localhost:5173"];
       if (allowedOrigins.includes(event.origin) === false) {
         console.error("[handleKakaoLogin] Invalid origin: ", event.origin);
         return; // 서버 주소 확인

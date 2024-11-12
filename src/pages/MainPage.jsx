@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useUser } from "../contexts/UserContext.jsx";
 import { createChatroom } from "../api/conversations/chat/createChatroom.js";
 import { createMeetroom } from "../api/conversations/meetroom/createMeetroom.js";
+import { LogoutButton } from "../components/login/LogoutButton.jsx";
 
 export const MainPage = () => {
   const { user } = useUser();
@@ -103,6 +104,8 @@ export const MainPage = () => {
             >
               Back to Login
             </Link>
+
+            <LogoutButton />
           </div>
         </div>
       </div>
