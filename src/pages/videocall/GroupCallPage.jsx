@@ -1,7 +1,7 @@
 // GroupCall.js
 import React, { useEffect, useRef, useState } from "react";
 import io from "socket.io-client";
-import { GROUPCALL_SOCKET_URL } from "../../api/config";
+import { GROUPCALL_SOCKET_URL } from "../../api/config.js";
 
 export const GroupCallPage = () => {
   const [peers, setPeers] = useState([]);

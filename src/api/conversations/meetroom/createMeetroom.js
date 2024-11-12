@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CREATE_MEETROOM } from "./config";
+import { CREATE_MEETROOM } from "../../config.js";
 
 export const createMeetroom = async (meetroom) => {
   try {

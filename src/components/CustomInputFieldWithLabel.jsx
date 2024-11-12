@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { checkUniqueValue } from "../api/checkUniqueValue";
+import { checkUniqueValue } from "../api/auth/register/checkUniqueValue.js";
 
 /**
  * CustomInputFieldWithLabel 입력란

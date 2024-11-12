@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getMeetroomByUserId } from "../../api/getMeetroomByUserId";
+import { getMeetroomByUserId } from "../../api/conversations/meetroom/getMeetroomByUserId";
 import { useNavigate } from "react-router-dom";
 
 export const MeetPage = () => {

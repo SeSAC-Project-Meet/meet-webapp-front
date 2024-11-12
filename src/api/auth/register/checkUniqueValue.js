@@ -1,5 +1,5 @@
-import meet from "./axiosInterceptor.js";
-import { CHECK_UNIQUE } from "./config";
+import meetApi from "../../axiosInterceptor.js";
+import { CHECK_UNIQUE } from "../../config.js";
 
 const validatePhoneNumberFormat = (phoneNumber) => {
   // 한국 전화번호 정규식: 010, 011, 016, 017, 018, 019, 02, 031, 032, 033 등
@@ -39,7 +39,7 @@ export const checkUniqueValue = async (type, value) => {
   }
 
   try {
-    const response = await meet.post(CHECK_UNIQUE, {
+    const response = await meetApi.post(CHECK_UNIQUE, {
       type,
       value,
     });

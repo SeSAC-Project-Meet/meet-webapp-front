@@ -1,21 +1,22 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { LoginPage } from "./pages/login/LoginPage";
-import { RegisterPage } from "./pages/register/RegisterPage";
+import { LoginPage } from "./pages/login/LoginPage.jsx";
+import { RegisterPage } from "./components/register/RegisterPage";
 import { UserProvider } from "./contexts/UserContext";
-import { MainPage } from "./pages/main/MainPage";
-import { LocalLoginPage } from "./pages/login/LocalLoginPage";
+import { MainPage } from "./pages/MainPage.jsx";
+import { LocalLoginPage } from "./pages/login/LocalLoginPage.jsx";
 import { ResetPasswordPage } from "./pages/lostandfound/ResetPasswordPage";
 import { FindIdPage } from "./pages/lostandfound/FindIdPage";
-import { NotFoundPage } from "./pages/statuscode/NotFoundPage";
-import { TermsPage } from "./pages/register/TermsPage";
-import { ChatPage } from "./pages/chat/ChatPage";
-import { ChatroomPage } from "./pages/chat/ChatroomPage";
-import { EmailCheckNonUser } from "./pages/register/EmailCheck.jsx";
+import { NotFoundPage } from "./pages/error/NotFoundPage";
+import { TermsPage } from "./components/register/TermsPage";
+import { ChatListPage } from "./pages/chat/ChatListPage.jsx";
+import { ChatPage } from "./pages/chat/ChatPage.jsx";
+import { EmailCheckNonUser } from "./components/register/EmailCheck.jsx";
 import { VideoCallPage } from "./pages/videocall/VideoCallPage";
 import { GroupCallPage } from "./pages/videocall/GroupCallPage";
 import { MeetPage } from "./pages/meet/MeetPage";
 import { MeetroomPage } from "./pages/meet/MeetroomPage";
-import { SetSpecificProfilePage } from "./pages/register/SetSpecificProfilePage";
+import { SetSpecificProfilePage } from "./components/register/SetSpecificProfilePage";
+import KakaoMapPage from "./components/location/NaverMap.jsx";
 
 function App() {
   return (
@@ -40,14 +41,16 @@ function App() {
           <Route path="/find/id" element={<FindIdPage />} />
           <Route path="/find/pw" element={<ResetPasswordPage />} />
 
-          <Route path="/chat" element={<ChatPage />} />
-          <Route path="/chat/:chatroomId" element={<ChatroomPage />} />
+          <Route path="/chat" element={<ChatListPage />} />
+          <Route path="/chat/:chatroomId" element={<ChatPage />} />
 
           <Route path="/videocall" element={<VideoCallPage />} />
           <Route path="/groupcall" element={<GroupCallPage />} />
 
           <Route path="/meet" element={<MeetPage />} />
           <Route path="/meet/:meetroomId" element={<MeetroomPage />} />
+
+          <Route path="/kakaomap" element={<KakaoMapPage />} />
         </Routes>
       </UserProvider>
     </Router>

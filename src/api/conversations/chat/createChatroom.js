@@ -1,9 +1,9 @@
-import meet from "./axiosInterceptor.js";
-import { CREATE_CHATROOM } from "./config";
+import meetApi from "../../axiosInterceptor.js";
+import { CREATE_CHATROOM } from "../../config.js";
 
 export const createChatroom = async (chatroom) => {
   try {
-    const response = await meet.post(CREATE_CHATROOM, chatroom);
+    const response = await meetApi.post(CREATE_CHATROOM, chatroom);
 
     console.log("Chatroom Response:", response.data);
     const { user_chatroom_id, chatroom_id } = response.data;

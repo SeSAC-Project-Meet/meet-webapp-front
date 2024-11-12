@@ -1,4 +1,4 @@
-export const API_URL = "https://192.168.0.24:9999";
+export const API_URL = "https://localhost:9999";
 export const USER_LOGIN = `${API_URL}/auth/login`;
 export const USER_REGISTER = `${API_URL}/auth/register`;
 export const GET_USER_PROFILE = `${API_URL}/auth/user`;

@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import { handleUserLogin } from "../../api/handleUserLogin";
+import { handleUserLogin } from "../../api/auth/user/handleUserLogin.js";
 import { useNavigate } from "react-router-dom";
 
-import { useUser } from "../../contexts/UserContext";
-import { CustomInputFieldWithLabel } from "../../components/CustomInputFieldWithLabel";
-import { CustomSubmitButton } from "../../components/CustomSubmitButton";
-import { CustomPwFieldWithCheck } from "../../components/CustomPwFieldWithCheck";
-import useFormattedPhoneNumber from "../../hooks/useFormattedPhoneNumber";
+import { useUser } from "../../contexts/UserContext.jsx";
+import { CustomInputFieldWithLabel } from "../../components/CustomInputFieldWithLabel.jsx";
+import { CustomSubmitButton } from "../../components/CustomSubmitButton.jsx";
+import { CustomPwFieldWithCheck } from "../../components/CustomPwFieldWithCheck.jsx";
+import useFormattedPhoneNumber from "../../hooks/useFormattedPhoneNumber.jsx";
 
 export const LocalLoginPage = () => {
   const [phoneNumber, setPhoneNumber] = useState("");

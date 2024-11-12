@@ -1,11 +1,11 @@
-import meet from "./axiosInterceptor.js";
-import { USER_REGISTER } from "./config";
+import meetApi from "../../axiosInterceptor.js";
+import { USER_REGISTER } from "../../config.js";
 
 export const userRegister = async (data) => {
   const { name, email, phone_number, password } = data;
 
   try {
-    await meet.post(USER_REGISTER, {
+    await meetApi.post(USER_REGISTER, {
       name,
       email,
       phone_number,

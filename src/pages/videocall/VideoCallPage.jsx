@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import io from "socket.io-client";
-import { VIDEO_SOCKET_URL } from "../../api/config";
+import { VIDEO_SOCKET_URL } from "../../api/config.js";
 
 const socket = io(VIDEO_SOCKET_URL); // 서버 URL에 맞게 변경
 

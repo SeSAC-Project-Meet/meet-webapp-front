@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { userRegister } from "../../api/userRegister";
-import { CustomInputFieldWithLabel } from "../../components/CustomInputFieldWithLabel";
-import { CustomPwFieldWithCheck } from "../../components/CustomPwFieldWithCheck";
-import { CustomSubmitButton } from "../../components/CustomSubmitButton";
-import useFormattedPhoneNumber from "../../hooks/useFormattedPhoneNumber";
+import { userRegister } from "../../api/auth/register/userRegister.js";
+import { CustomInputFieldWithLabel } from "../CustomInputFieldWithLabel.jsx";
+import { CustomPwFieldWithCheck } from "../CustomPwFieldWithCheck.jsx";
+import { CustomSubmitButton } from "../CustomSubmitButton.jsx";
+import useFormattedPhoneNumber from "../../hooks/useFormattedPhoneNumber.jsx";
 
 export const RegisterPage = () => {
   const navigate = useNavigate();

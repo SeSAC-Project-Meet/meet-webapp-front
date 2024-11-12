@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { CustomInputFieldWithLabel } from "../../components/CustomInputFieldWithLabel";
-import { CustomSubmitButton } from "../../components/CustomSubmitButton";
+import { CustomInputFieldWithLabel } from "../CustomInputFieldWithLabel.jsx";
+import { CustomSubmitButton } from "../CustomSubmitButton.jsx";
 
 export const SetSpecificProfilePage = () => {
   // 닉네임, MBTI, 해시태그, 한줄소개, 동네인증 을 받음
