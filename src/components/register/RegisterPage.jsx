@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { userRegister } from "../../api/userRegister";
-import { CustomInputFieldWithLabel } from "../../components/CustomInputFieldWithLabel";
-import { CustomPwFieldWithCheck } from "../../components/CustomPwFieldWithCheck";
-import { CustomSubmitButton } from "../../components/CustomSubmitButton";
-import useFormattedPhoneNumber from "../../hooks/useFormattedPhoneNumber";
+import { userRegister } from "../../api/auth/register/userRegister.js";
+import { CustomInputFieldWithLabel } from "../CustomInputFieldWithLabel.jsx";
+import { CustomPwFieldWithCheck } from "../CustomPwFieldWithCheck.jsx";
+import { CustomSubmitButton } from "../CustomSubmitButton.jsx";
+import useFormattedPhoneNumber from "../../hooks/useFormattedPhoneNumber.jsx";
 
 export const RegisterPage = () => {
   const navigate = useNavigate();
@@ -169,7 +169,7 @@ export const RegisterPage = () => {
             isUniqueSetter={setIsUniquePhoneNumber}
             checkFormat
             checkFormatGetter={phoneNumberError}
-            unuqueTrueMessage="사용 가능한 전화번호입니다."
+            uniqueTrueMessage="사용 가능한 전화번호입니다."
           />
           <CustomInputFieldWithLabel
             label="이메일"
@@ -184,6 +184,7 @@ export const RegisterPage = () => {
             checkFormat
             checkFormatGetter={emailError}
             uniqueTrueMessage="사용 가능한 이메일입니다."
+            uniqueFalseMessage="이미 사용중인 이메일입니다."
           />
           <CustomSubmitButton
             text="회원가입"

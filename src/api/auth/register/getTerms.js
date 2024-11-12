@@ -1,9 +1,9 @@
-import meet from "./axiosInterceptor.js";
-import { GET_TERMS } from "./config";
+import meetApi from "../../axiosInterceptor.js";
+import { GET_TERMS } from "../../config.js";
 
 export const getTerms = async () => {
   try {
-    const response = await meet.get(GET_TERMS);
+    const response = await meetApi.get(GET_TERMS);
 
     console.log("Terms Response:", response.data);
 

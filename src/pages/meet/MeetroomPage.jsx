@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import io from "socket.io-client";
-import { SOCKET_URL } from "../../api/config";
-import VideoCard from "./VideoCard";
+import { SOCKET_URL } from "../../api/config.js";
+import VideoCard from "../../components/VideoCard.jsx";
 
 export const MeetroomPage = () => {
   const { meetroomId } = useParams();

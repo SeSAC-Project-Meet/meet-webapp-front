@@ -1,12 +1,12 @@
 import axios from "axios";
 
 // Create an instance of meet
-const meet = axios.create({
+const meetApi = axios.create({
   timeout: 1000,
 });
 
 // Add a request interceptor to include withCredentials
-meet.interceptors.request.use(
+meetApi.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("MEET_ACCESS_TOKEN");
     if (token) {
@@ -26,7 +26,7 @@ meet.interceptors.request.use(
 );
 
 // Add a response interceptor
-meet.interceptors.response.use(
+meetApi.interceptors.response.use(
   (response) => {
     // Any status code that lie within the range of 2xx cause this function to trigger
     return response;
@@ -53,4 +53,4 @@ meet.interceptors.response.use(
   }
 );
 
-export default meet;
+export default meetApi;

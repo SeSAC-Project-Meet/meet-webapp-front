@@ -1,4 +1,4 @@
-import { getChatroomByUserId } from "../getChatroomByUserId";
+import { getChatroomByUserId } from "../conversations/chat/getChatroomByUserId.js";
 
 export const isUserInChatroom = async (chatroomId) => {
   try {
@@ -8,7 +8,7 @@ export const isUserInChatroom = async (chatroomId) => {
       (chatroom) => chatroom.id === parseInt(chatroomId)
     );
     console.log(
-      "[ChatroomPage] 사용자가 접속해있는 채팅방에 포함되는지 확인합니다. : ",
+      "[ChatPage] 사용자가 접속해있는 채팅방에 포함되는지 확인합니다. : ",
       chatroomExists
     );
     if (!chatroomExists) {

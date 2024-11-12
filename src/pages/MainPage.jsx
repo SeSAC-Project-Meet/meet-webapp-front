@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import { useUser } from "../../contexts/UserContext";
-import { createChatroom } from "../../api/createChatroom";
-import { createMeetroom } from "../../api/createMeetroom";
+import { useUser } from "../contexts/UserContext.jsx";
+import { createChatroom } from "../api/conversations/chat/createChatroom.js";
+import { createMeetroom } from "../api/conversations/meetroom/createMeetroom.js";
 
 export const MainPage = () => {
   const { user } = useUser();

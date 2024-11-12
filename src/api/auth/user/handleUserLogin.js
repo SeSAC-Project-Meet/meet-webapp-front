@@ -1,10 +1,10 @@
-import { setAccessTokenToLocalStorage } from "../services/setAccessTokenToLocalStorage.js";
-import meet from "./axiosInterceptor.js";
-import { USER_LOGIN } from "./config.js";
+import { setAccessTokenToLocalStorage } from "../../../services/setAccessTokenToLocalStorage.js";
+import meetApi from "../../axiosInterceptor.js";
+import { USER_LOGIN } from "../../config.js";
 
 export const handleUserLogin = async (loginID, password) => {
   try {
-    const response = await meet.post(USER_LOGIN, {
+    const response = await meetApi.post(USER_LOGIN, {
       loginID: loginID,
       password: password,
     });

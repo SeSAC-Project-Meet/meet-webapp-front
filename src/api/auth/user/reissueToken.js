@@ -1,11 +1,11 @@
-import meet from "./axiosInterceptor.js";
-import { REISSUE_TOKEN } from "./config";
-import { setAccessTokenToLocalStorage } from "../services/setAccessTokenToLocalStorage.js";
+import meetApi from "../../axiosInterceptor.js";
+import { REISSUE_TOKEN } from "../../config.js";
+import { setAccessTokenToLocalStorage } from "../../../services/setAccessTokenToLocalStorage.js";
 
 export const reissueToken = async () => {
   try {
     console.log("[reissueToken] 토큰 재발급 요청 중...");
-    const response = await meet.get(REISSUE_TOKEN);
+    const response = await meetApi.get(REISSUE_TOKEN);
 
     const { token, user } = response.data;
     const { user_id, username } = user;

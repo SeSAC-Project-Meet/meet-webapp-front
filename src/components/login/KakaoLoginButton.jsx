@@ -1,6 +1,6 @@
-import { requestKakaoLogin } from "../../api/requestKakaoLogin";
+import { handleKakaoLogin } from "../../api/auth/user/handleKakaoLogin.js";
 import { useNavigate } from "react-router-dom";
-import { useUser } from "../../contexts/UserContext";
+import { useUser } from "../../contexts/UserContext.jsx";
 
 export function KakaoLoginButton() {
   const navigate = useNavigate();
@@ -8,7 +8,7 @@ export function KakaoLoginButton() {
 
   const handleKakaoLogin = async () => {
     try {
-      const user = await requestKakaoLogin();
+      const user = await handleKakaoLogin();
       console.log("[kakao-login] user : ", user);
       if (user.status) {
         // 로그인 성공

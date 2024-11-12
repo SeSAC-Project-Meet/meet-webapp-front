@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { checkUniqueValue } from "../api/checkUniqueValue";
+import { checkUniqueValue } from "../api/auth/register/checkUniqueValue.js";
 
 /**
  * CustomInputFieldWithLabel 입력란
@@ -37,7 +37,7 @@ export const CustomInputFieldWithLabel = ({
 }) => {
   const [isValid, setIsValid] = useState(false);
   const [verificationClicked, setVerificationClicked] = useState(false);
-  const [verificationMessage, setVerificationMessage] = useState("");
+  const [verificationMessage, setVerificationMessage] = useState(null);
   const handleValidationClick = async () => {
     const result = await checkUniqueValue(checkDataType, getter);
     console.log("[inputField] 중복확인 결과 : ", result);
@@ -80,6 +80,7 @@ export const CustomInputFieldWithLabel = ({
           <button
             type="button"
             onClick={handleValidationClick}
+            onTouchStart={handleValidationClick}
             className="absolute inset-y-0 right-0 flex items-center px-4 text-m text-text-secondary"
           >
             중복확인

@@ -1,5 +1,5 @@
-import meet from "./axiosInterceptor";
-import { USER_REGISTER_SPECIFIC } from "./config";
+import meetApi from "../../axiosInterceptor.js";
+import { USER_REGISTER_SPECIFIC } from "../../config.js";
 
 export const userRegisterSpecific = async (
   nickname,
@@ -9,7 +9,7 @@ export const userRegisterSpecific = async (
   areas
 ) => {
   try {
-    const response = await meet.post(USER_REGISTER_SPECIFIC, {
+    const response = await meetApi.post(USER_REGISTER_SPECIFIC, {
       nickname,
       mbti,
       hashtags,

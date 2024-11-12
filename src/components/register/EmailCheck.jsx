@@ -1,4 +1,4 @@
-import { CustomInputFieldWithLabel } from "../../components/CustomInputFieldWithLabel.jsx";
+import { CustomInputFieldWithLabel } from "../CustomInputFieldWithLabel.jsx";
 import { useState } from "react";
 import axios from "axios";
 

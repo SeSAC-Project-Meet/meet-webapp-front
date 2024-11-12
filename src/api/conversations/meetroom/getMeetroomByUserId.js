@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_MEETROOM_BY_USER_ID } from "./config";
+import { GET_MEETROOM_BY_USER_ID } from "../../config.js";
 
 export const getMeetroomByUserId = async () => {
   try {

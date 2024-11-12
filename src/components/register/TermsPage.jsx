@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { getTerms } from "../../api/getTerms";
-import CheckBox from "../../components/CheckBox";
+import { getTerms } from "../../api/auth/register/getTerms.js";
+import CheckBox from "./CheckBox.jsx";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export const TermsPage = () => {
