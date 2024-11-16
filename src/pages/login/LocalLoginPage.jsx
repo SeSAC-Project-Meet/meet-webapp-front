@@ -40,8 +40,8 @@ export const LocalLoginPage = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-bg-primary">
-      <div className="w-full max-w-md p-8 space-y-6 bg-container-bg-primary rounded-lg shadow-md">
-        <h2 className="text-2xl font-primary font-bold text-center text-text-primary">
+      <div className="w-full max-w-md p-8 space-y-6 rounded-lg shadow-md bg-container-bg-primary">
+        <h2 className="text-2xl font-bold text-center font-primary text-text-primary">
           Meet
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -54,7 +54,7 @@ export const LocalLoginPage = () => {
           />
 
           <div>
-            <label className="block mb-1 font-medium text-sm text-text-primary">
+            <label className="block mb-1 text-sm font-medium text-text-primary">
               비밀번호
             </label>
 
@@ -85,7 +85,7 @@ export const LocalLoginPage = () => {
               type="button"
               className="hover:underline"
               onClick={() => {
-                navigate("/register");
+                navigate("/register/terms");
               }}
             >
               회원가입

@@ -41,7 +41,8 @@ meetApi.interceptors.response.use(
       if (
         currentLocation !== "/login" &&
         currentLocation !== "/login/local" &&
-        currentLocation !== "/register"
+        currentLocation !== "/register" &&
+        currentLocation !== "/register/terms"
       ) {
         console.error(
           "[axios intercepter] 401 Unauthorized access, 로그인 페이지로 이동합니다."
