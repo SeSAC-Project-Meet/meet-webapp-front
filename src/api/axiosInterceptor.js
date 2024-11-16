@@ -17,7 +17,7 @@ meetApi.interceptors.request.use(
         "[axios intercepter] LocalStorage에 AccessToken이 없습니다."
       );
     }
-    config.withCredentials = true;
+    config.withCredentials = true; // TODO : 뺴
     return config;
   },
   (error) => {
@@ -41,7 +41,8 @@ meetApi.interceptors.response.use(
       if (
         currentLocation !== "/login" &&
         currentLocation !== "/login/local" &&
-        currentLocation !== "/register"
+        currentLocation !== "/register" &&
+        currentLocation !== "/register/terms"
       ) {
         console.error(
           "[axios intercepter] 401 Unauthorized access, 로그인 페이지로 이동합니다."

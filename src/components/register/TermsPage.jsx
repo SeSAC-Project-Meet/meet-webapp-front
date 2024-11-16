@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getTerms } from "../../api/auth/register/getTerms.js";
 import CheckBox from "./CheckBox.jsx";
 import { useLocation, useNavigate } from "react-router-dom";
+import MainLogo from "../login/MainLogo.jsx";
 
 export const TermsPage = () => {
   const [terms, setTerms] = useState([]); // 초기 상태는 빈 배열
@@ -73,9 +74,11 @@ export const TermsPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-bg-primary p-10">
-      <h1 className="text-9xl font-bold text-left font-primary mb-4">Meet</h1>
-      <p className="text-left text-lg mb-8 font-primary">
+    <div className="min-h-screen p-10 bg-bg-primary">
+      <h1 className="mb-4 font-bold text-left text-9xl font-primary">
+        <MainLogo />
+      </h1>
+      <p className="mb-8 text-lg text-left font-primary">
         서비스 이용을 위해 약관 동의가 필요합니다.
       </p>
       <div className="flex items-center mb-4">
@@ -86,7 +89,7 @@ export const TermsPage = () => {
         {terms.map((term) => (
           <div
             key={term.term_id}
-            className="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow duration-300"
+            className="p-4 transition-shadow duration-300 bg-white rounded-lg shadow-md hover:shadow-lg"
           >
             <div className="flex items-center mb-4">
               <CheckBox
