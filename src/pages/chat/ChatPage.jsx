@@ -31,12 +31,19 @@ export const ChatPage = () => {
           navigate("/chat");
           return;
         }
-        console.log(
-          "[ChatPage] 접근권한 검증이 완료되었습니다..",
-          userCheck
-        );
+        console.log("[ChatPage] 접근권한 검증이 완료되었습니다..", userCheck);
         // 소켓 연결 초기화
-        const socket = io(SOCKET_URL, { withCredentials: true });
+        const token = localStorage.getItem("MEET_ACCESS_TOKEN");
+        if (!token) {
+          console.error("[ChatPage] Access Token이 없습니다.");
+          navigate("/login");
+          return;
+        }
+        const socket = io(SOCKET_URL, {
+          extraHeaders: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         socketRef.current = socket;
 
         socket.on("unauthorized", (msg) => {
