@@ -19,15 +19,21 @@ export const handleUserLogin = async (loginID, password) => {
 
     return { user_id, username };
   } catch (error) {
-    if (error.response.status === 401) {
-      console.error("잘못된 아이디 또는 비밀번호를 입력했습니다.");
-      alert("잘못된 아이디 또는 비밀번호를 입력했습니다.");
-      return null;
+    if (error.response) {
+      if (error.response.status === 401) {
+        console.error("잘못된 아이디 또는 비밀번호를 입력했습니다.");
+        alert("잘못된 아이디 또는 비밀번호를 입력했습니다.");
+      }
+      console.error("로그인 요청 중 에러가 발생했습니다.:", error);
+      alert(
+        `로그인 요청 중 에러가 발생했습니다. 관리자에게 문의하세요\nError Code: ${error.response.status}\nMessage: ${error.message}`
+      );
     }
-    console.error("로그인 요청 중 에러가 발생했습니다.:", error);
-    alert(
-      `로그인 요청 중 에러가 발생했습니다. 관리자에게 문의하세요\nError Code: ${error.response.status}\nMessage: ${error.message}`
-    );
+    else {
+      alert(
+        `로그인 요청 중 에러가 발생했습니다.\nError: ${error}`
+      );
+    }
     return null;
   }
 };

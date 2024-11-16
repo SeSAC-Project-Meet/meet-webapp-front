@@ -3,16 +3,33 @@ import { useParams } from "react-router-dom";
 import io from "socket.io-client";
 import { SOCKET_URL } from "../../api/config.js";
 import VideoCard from "../../components/VideoCard.jsx";
+import { useUser } from "../../contexts/UserContext.jsx";
+import Peer from 'simple-peer';
 
 export const MeetroomPage = () => {
+  const { user } = useUser();
   const { meetroomId } = useParams();
   const [videoDevices, setVideoDevices] = useState([]);
   const userVideoRef = useRef();
   const userStream = useRef();
   const [peers, setPeers] = useState([]);
 
+  const token = localStorage.getItem("MEET_ACCESS_TOKEN");
+  if (!token) {
+    console.error("[ChatPage] Access Token이 없습니다.");
+    navigate("/login");
+    return;
+  }
+
+  const socket = io(SOCKET_URL, {
+    withCredentials: true,
+    extraHeaders: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
   useEffect(() => {
-    const socket = io(SOCKET_URL, { withCredentials: true });
+    if (!user.user_id) return;
 
     // Get Video Devices
     navigator.mediaDevices.enumerateDevices().then((devices) => {
@@ -28,29 +45,30 @@ export const MeetroomPage = () => {
         userStream.current = stream;
 
         socket.emit('BE-join-room', { meetroomId });
+        // 다른 유저가 이 방에 접속
         socket.on('FE-user-join', (users) => {
-          // all users
+          console.log("FE-user-join", users, "my socket id", socket.id);
           const peers = [];
-          users.forEach(({ userId, info }) => {
-            let { userName, video, audio } = info;
+          users.forEach(({ userSocketId, info }) => {
+            let { userId, video, audio } = info;
 
-            if (userName !== currentUser) {
-              const peer = createPeer(userId, socket.id, stream);
+            // 나와 socketId가 다른 상대방인 경우에만 적용
+            if (userSocketId !== socket.id) {
+              // socketId를 기준으로 상대방 peer를 찾기
+              const peer = createPeer(userSocketId, socket.id, stream);
 
-              peer.userName = userName;
-              peer.peerID = userId;
+              peer.peerID = userSocketId;
 
               peersRef.current.push({
-                peerID: userId,
+                peerID: userSocketId,
                 peer,
-                userName,
               });
               peers.push(peer);
 
               setUserVideoAudio((preList) => {
                 return {
                   ...preList,
-                  [peer.userName]: { video, audio },
+                  [peer.userSocketId]: { video, audio },
                 };
               });
             }
@@ -59,9 +77,9 @@ export const MeetroomPage = () => {
           setPeers(peers);
         });
     });
-  }, []);
+  }, [user]);
 
-  function createPeer(userId, caller, stream) {
+  function createPeer(userSocketId, caller, stream) {
     const peer = new Peer({
       initiator: true,
       trickle: false,
@@ -70,7 +88,7 @@ export const MeetroomPage = () => {
 
     peer.on('signal', (signal) => {
       socket.emit('BE-call-user', {
-        userToCall: userId,
+        userToCall: userSocketId,
         from: caller,
         signal,
       });

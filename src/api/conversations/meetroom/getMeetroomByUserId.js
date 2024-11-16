@@ -1,9 +1,9 @@
-import axios from "axios";
+import meetApi from "../../axiosInterceptor.js";
 import { GET_MEETROOM_BY_USER_ID } from "../../config.js";
 
 export const getMeetroomByUserId = async () => {
   try {
-    const response = await axios.get(GET_MEETROOM_BY_USER_ID);
+    const response = await meetApi.get(GET_MEETROOM_BY_USER_ID);
 
     console.log("Meetroom Response:", response.data);
 
