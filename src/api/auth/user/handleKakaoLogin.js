@@ -1,12 +1,16 @@
+
 import { setAccessTokenToLocalStorage } from "../../../services/setAccessTokenToLocalStorage.js";
 import { BASE_URL, KAKAO_LOGIN } from "../../config.js";
+
 
 export const handleKakaoLogin = () => {
   return new Promise((resolve) => {
     window.open(KAKAO_LOGIN, "resizable=no,location=no,scrollbars=yes");
 
     const messageHandler = (event) => {
+
       const allowedOrigins = [BASE_URL, "http://localhost:5173"];
+
       if (allowedOrigins.includes(event.origin) === false) {
         console.error("[handleKakaoLogin] Invalid origin: ", event.origin);
         return; // 서버 주소 확인
@@ -28,9 +32,11 @@ export const handleKakaoLogin = () => {
         //   );
         // }, 500);
       } else {
+
         const { user_id, username, token } = event.data;
         console.log("[handleKakaoLogin] User found:", user_id, username, token);
         setAccessTokenToLocalStorage(token);
+
         resolve({ status: true, user: { user_id, username } }); // Promise 해결
         // setTimeout(() => {
         //   window.location.reload();

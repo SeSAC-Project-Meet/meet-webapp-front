@@ -31,6 +31,7 @@ export const ChatPage = () => {
           navigate("/chat");
           return;
         }
+
         console.log("[ChatPage] 접근권한 검증이 완료되었습니다..", userCheck);
         // 소켓 연결 초기화
         const token = localStorage.getItem("MEET_ACCESS_TOKEN");
@@ -44,6 +45,7 @@ export const ChatPage = () => {
             Authorization: `Bearer ${token}`,
           },
         });
+
         socketRef.current = socket;
 
         socket.on("unauthorized", (msg) => {
