@@ -1,3 +1,4 @@
+import { setAccessTokenToLocalStorage } from "../../../services/setAccessTokenToLocalStorage.js";
 import { BASE_URL, KAKAO_LOGIN } from "../../config.js";
 
 export const handleKakaoLogin = () => {
@@ -27,7 +28,9 @@ export const handleKakaoLogin = () => {
         //   );
         // }, 500);
       } else {
-        const { user_id, username } = event.data;
+        const { user_id, username, token } = event.data;
+        console.log("[handleKakaoLogin] User found:", user_id, username, token);
+        setAccessTokenToLocalStorage(token);
         resolve({ status: true, user: { user_id, username } }); // Promise 해결
         // setTimeout(() => {
         //   window.location.reload();

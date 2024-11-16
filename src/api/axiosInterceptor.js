@@ -17,7 +17,7 @@ meetApi.interceptors.request.use(
         "[axios intercepter] LocalStorage에 AccessToken이 없습니다."
       );
     }
-    config.withCredentials = true;
+    config.withCredentials = true; // TODO : 뺴
     return config;
   },
   (error) => {
