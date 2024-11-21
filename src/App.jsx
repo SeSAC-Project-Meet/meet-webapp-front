@@ -19,6 +19,7 @@ import { SetSpecificProfilePage } from "./components/register/SetSpecificProfile
 import KakaoMapPage from "./components/location/NaverMap.jsx";
 import { TestPage } from "./pages/TestPage.jsx";
 import { LayoutPage } from "./components/LayoutPage.jsx";
+import { ContestSpecificsPage } from "./pages/ContestSpecificsPage.jsx";
 
 function App() {
   return (
@@ -34,6 +35,15 @@ function App() {
               </LayoutPage>
             }
           />
+          <Route
+            path="/contest/:contestId"
+            element={
+              <LayoutPage>
+                <ContestSpecificsPage />
+              </LayoutPage>
+            }
+          />
+
           <Route path="/" element={<MainPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/register/terms" element={<TermsPage />} />
