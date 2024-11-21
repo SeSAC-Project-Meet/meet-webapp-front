@@ -75,10 +75,10 @@ export const TermsPage = () => {
 
   return (
     <div className="min-h-screen p-10 bg-bg-primary">
-      <h1 className="mb-4 font-bold text-left text-9xl font-primary">
+      <h1 className="mb-4 font-bold text-left text-9xl font-gmarket">
         <MainLogo />
       </h1>
-      <p className="mb-8 text-lg text-left font-primary">
+      <p className="mb-8 text-lg text-left font-gmarket">
         서비스 이용을 위해 약관 동의가 필요합니다.
       </p>
       <div className="flex items-center mb-4">
@@ -106,7 +106,7 @@ export const TermsPage = () => {
       </div>
       <button
         disabled={isButtonDisabled}
-        className={`w-full mt-8 px-4 py-2 rounded-lg font-primary transition-colors duration-300 ${
+        className={`w-full mt-8 px-4 py-2 rounded-lg font-gmarket transition-colors duration-300 ${
           isButtonDisabled
             ? "bg-gray-300 cursor-not-allowed"
             : "bg-blue-600 text-white hover:bg-blue-700"

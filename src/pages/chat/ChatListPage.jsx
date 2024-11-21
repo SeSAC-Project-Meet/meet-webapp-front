@@ -51,16 +51,16 @@ export const ChatListPage = () => {
       alert("채팅방 생성에 실패했습니다.");
     }
   };
-  
+
   return (
     <div className="flex flex-col items-center bg-bg-primary min-h-screen">
-      <h1 className="font-primary text-2xl font-bold text-center mt-6 p-4 text-gray-800">
+      <h1 className="font-gmarket text-2xl font-bold text-center mt-6 p-4 text-gray-800">
         Chat Page
       </h1>
       <div className="w-full max-w-md">
         {noChatroom && (
           <div className="p-4 bg-white rounded-lg shadow-md text-center text-gray-800">
-            <h2 className="font-primary text-lg">
+            <h2 className="font-gmarket text-lg">
               현재 가입한 채팅방이 없습니다.
             </h2>
             <button
@@ -77,7 +77,7 @@ export const ChatListPage = () => {
             onClick={() => handleChatroomClick(chatroom)} // 클릭 시 채팅방 열기
             className="my-3 p-4 cursor-pointer bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 transform hover:scale-105"
           >
-            <h2 className="font-primary text-lg text-gray-800">
+            <h2 className="font-gmarket text-lg text-gray-800">
               {chatroom.name}
             </h2>
             <p className="text-gray-600">채팅방 ID: {chatroom.id}</p>

@@ -18,10 +18,13 @@ export default {
         "button-bg-hover": "#438e96", // 버튼 호버 색
         "button-border-hover": "#92cace", // 버튼 테두리 호버 색
         "button-border-focused": "#92cace", // 버튼 테두리 포커스 색
+        "brand-color-jinhan-blue": "#0010A3",
       },
     },
     fontFamily: {
-      primary: ["Gmarket Sans", "sans-serif"],
+      gmarket: ["Gmarket Sans", "sans-serif"],
+      basic: ["AppleSDGothicNeo", "NotoSansKR", "sans-serif"],
+      pretendard: ["Pretendard", "NotoSansKR", "sans-serif"],
     },
   },
   plugins: [],
