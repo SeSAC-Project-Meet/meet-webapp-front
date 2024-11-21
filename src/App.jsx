@@ -17,6 +17,7 @@ import { MeetPage } from "./pages/meet/MeetPage";
 import { MeetroomPage } from "./pages/meet/MeetroomPage";
 import { SetSpecificProfilePage } from "./components/register/SetSpecificProfilePage";
 import KakaoMapPage from "./components/location/NaverMap.jsx";
+import { TestPage } from "./pages/TestPage.jsx";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Routes>
           <Route path="*" element={<NotFoundPage />} />
 
+          <Route path="/test" element={<TestPage />} />
           <Route path="/" element={<MainPage />} />
 
           <Route path="/register" element={<RegisterPage />} />

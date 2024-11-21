@@ -7,6 +7,7 @@ import { CustomInputFieldWithLabel } from "../../components/CustomInputFieldWith
 import { CustomSubmitButton } from "../../components/CustomSubmitButton.jsx";
 import { CustomPwFieldWithCheck } from "../../components/CustomPwFieldWithCheck.jsx";
 import useFormattedPhoneNumber from "../../hooks/useFormattedPhoneNumber.jsx";
+import MainLogo from "../../components/login/MainLogo.jsx";
 
 export const LocalLoginPage = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -41,8 +42,8 @@ export const LocalLoginPage = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-bg-primary">
       <div className="w-full max-w-md p-8 space-y-6 rounded-lg shadow-md bg-container-bg-primary">
-        <h2 className="text-2xl font-bold text-center font-primary text-text-primary">
-          Meet
+        <h2 className="font-bold text-center text-md font-primary text-text-primary">
+          <MainLogo />
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <CustomInputFieldWithLabel

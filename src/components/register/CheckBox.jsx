@@ -1,5 +1,3 @@
-import React from "react";
-
 const CheckBox = ({ isChecked, setIsChecked }) => {
   const handleToggle = () => {
     setIsChecked(!isChecked);
