@@ -50,8 +50,7 @@ export const TestPage = () => {
   ];
 
   return (
-    <div className="flex flex-col px-2">
-      <Header />
+    <div>
       <MenuBar />
       <MainPageCarousel />
 

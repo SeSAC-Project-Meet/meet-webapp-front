@@ -18,6 +18,7 @@ import { MeetroomPage } from "./pages/meet/MeetroomPage";
 import { SetSpecificProfilePage } from "./components/register/SetSpecificProfilePage";
 import KakaoMapPage from "./components/location/NaverMap.jsx";
 import { TestPage } from "./pages/TestPage.jsx";
+import { LayoutPage } from "./components/LayoutPage.jsx";
 
 function App() {
   return (
@@ -25,10 +26,15 @@ function App() {
       <UserProvider>
         <Routes>
           <Route path="*" element={<NotFoundPage />} />
-
-          <Route path="/test" element={<TestPage />} />
+          <Route
+            path="/test"
+            element={
+              <LayoutPage>
+                <TestPage />
+              </LayoutPage>
+            }
+          />
           <Route path="/" element={<MainPage />} />
-
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/register/terms" element={<TermsPage />} />
           <Route path="/email-check" element={<EmailCheckNonUser />} />
@@ -36,22 +42,16 @@ function App() {
             path="/register/specific"
             element={<SetSpecificProfilePage />}
           />
-
           <Route path="/login" element={<LoginPage />} />
           <Route path="/login/local" element={<LocalLoginPage />} />
-
           <Route path="/find/id" element={<FindIdPage />} />
           <Route path="/find/pw" element={<ResetPasswordPage />} />
-
           <Route path="/chat" element={<ChatListPage />} />
           <Route path="/chat/:chatroomId" element={<ChatPage />} />
-
           <Route path="/videocall" element={<VideoCallPage />} />
           <Route path="/groupcall" element={<GroupCallPage />} />
-
           <Route path="/meet" element={<MeetPage />} />
           <Route path="/meet/:meetroomId" element={<MeetroomPage />} />
-
           <Route path="/kakaomap" element={<KakaoMapPage />} />
         </Routes>
       </UserProvider>
