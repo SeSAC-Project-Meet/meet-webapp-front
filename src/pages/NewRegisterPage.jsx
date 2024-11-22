@@ -7,7 +7,10 @@ import { checkUniqueValue } from "../api/auth/register/checkUniqueValue";
 import {
   validateEmailFormat,
   validatePhoneNumberFormat,
+  validateName,
+  validatePassword,
 } from "../api/auth/register/validations";
+import { userRegister } from "../api/auth/register/userRegister";
 
 export const NewRegisterPage = () => {
   const [name, setName] = useState("");
@@ -16,6 +19,11 @@ export const NewRegisterPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
+
+  const [nameError, setNameError] = useState("");
+  const [phoneNumberError, setPhoneNumberError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [emailError, setEmailError] = useState("");
 
   const [isUniqueEmail, setIsUniqueEmail] = useState(false);
   const [isValidEmail, setIsValidEmail] = useState(false);
@@ -53,6 +61,44 @@ export const NewRegisterPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const errors = {
+      name: validateName(name),
+      password: validatePassword(password),
+      phoneNumber: validatePhoneNumberFormat(phoneNumber),
+      email: validateEmailFormat(email),
+    };
+
+    if (Object.values(errors).some((error) => error)) {
+      console.log("errors : ", errors);
+      setNameError(errors.name);
+      setPasswordError(errors.password);
+      setPhoneNumberError(errors.phoneNumber);
+      setEmailError(errors.email);
+      return;
+    }
+
+    setPasswordError("");
+    setPhoneNumberError("");
+    setEmailError("");
+    try {
+      const registerResult = await userRegister({
+        name,
+        email,
+        phone_number: phoneNumber,
+        password,
+      });
+      if (!registerResult.status) {
+        alert("회원가입에 실패했습니다.\n" + registerResult.message);
+        return;
+      } else {
+        alert("회원가입 성공!");
+        navigate("/login");
+      }
+    } catch (err) {
+      console.error(err);
+      alert(`회원가입 에러 발생!\nError : ${err}`);
+    }
   };
 
   const handleEmailCheck = async () => {
@@ -80,6 +126,7 @@ export const NewRegisterPage = () => {
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
+          <span className="mt-1 -mb-2 text-xs text-red-500">{nameError}</span>
 
           <div className="relative mt-10 border-b border-black ">
             <input
@@ -97,6 +144,9 @@ export const NewRegisterPage = () => {
               <ShowAndHideIcon isShow={showPassword} />
             </button>
           </div>
+          <span className="mt-1 -mb-2 text-xs text-red-500">
+            {passwordError}
+          </span>
 
           <div className="relative mt-10 border-b border-black ">
             <input

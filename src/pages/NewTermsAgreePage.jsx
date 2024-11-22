@@ -11,7 +11,7 @@ export const NewTermsAgreePage = () => {
   const [prevState, setPrevState] = useState("");
 
   useEffect(() => {
-    console.log("location : ", location.state);
+    console.log("[약관동의 페이지] 넘어온 state 값 : ", location.state);
     if (location.state?.type === "kakao") {
       setPrevState(location.state?.user || "");
       console.log("prevState : ", prevState);
@@ -65,7 +65,7 @@ export const NewTermsAgreePage = () => {
   const navigate = useNavigate();
   const handleContinueRegister = () => {
     console.log("동의한 약관 : ", agreeTerms);
-    console.log("prevState before continue : ", prevState);
+    console.log("[약관동의페이지] 전달하는 state : ", prevState);
     navigate("/register-v2", { state: { email: prevState, agreeTerms } });
   };
 
