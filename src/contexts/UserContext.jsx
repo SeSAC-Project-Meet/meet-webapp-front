@@ -24,18 +24,18 @@ export const UserProvider = ({ children }) => {
         console.log("[UserContext] 로그인 상태라서 메인페이지로 이동");
         navigate("/");
       }
-      if (
-        !userProfile &&
-        location.pathname !== "/login" &&
-        location.pathname !== "/login/local" &&
-        location.pathname !== "/register"
-      ) {
-        // 프로필이 없는데, 로그인페이지가 아니거나, 회원가입 페이지가 아니면
-        // 로그인 페이지로 ㄱㄱ
-        console.log("[UserContext] 사용자 정보가 없어서 로그인 페이지로 이동");
-        navigate("/login");
-        return;
-      }
+      // if (
+      //   !userProfile &&
+      //   location.pathname !== "/login" &&
+      //   location.pathname !== "/login/local" &&
+      //   location.pathname !== "/register"
+      // ) {
+      //   // 프로필이 없는데, 로그인페이지가 아니거나, 회원가입 페이지가 아니면
+      //   // 로그인 페이지로 ㄱㄱ
+      //   console.log("[UserContext] 사용자 정보가 없어서 로그인 페이지로 이동");
+      //   navigate("/login");
+      //   return;
+      // }
     }, 400);
 
     return () => clearTimeout(timer);

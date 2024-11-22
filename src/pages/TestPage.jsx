@@ -1,4 +1,4 @@
-import { Header } from "../components/header/Header";
+import { SearchHeader } from "../components/header/SearchHeader";
 import { ContestInfoCard } from "../components/main/ContestInfoCard";
 import MainPageCarousel from "../components/main/MainPageCarousel";
 import { MenuBar } from "../components/menubar/MenuBar";

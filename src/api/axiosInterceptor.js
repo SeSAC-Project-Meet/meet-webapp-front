@@ -33,23 +33,23 @@ meetApi.interceptors.response.use(
   },
   (error) => {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
-    if (error.response && error.response.status === 401) {
-      // Handle unauthorized access
-      // console.error("401 Unauthorized access, 로그인 페이지로 이동합니다.");
-      // window.location.href = "/login";
-      const currentLocation = window.location.pathname;
-      if (
-        currentLocation !== "/login" &&
-        currentLocation !== "/login/local" &&
-        currentLocation !== "/register" &&
-        currentLocation !== "/register/terms"
-      ) {
-        console.error(
-          "[axios intercepter] 401 Unauthorized access, 로그인 페이지로 이동합니다."
-        );
-        window.location.href = "/login";
-      }
-    }
+    // if (error.response && error.response.status === 401) {
+    //   // Handle unauthorized access
+    //   // console.error("401 Unauthorized access, 로그인 페이지로 이동합니다.");
+    //   // window.location.href = "/login";
+    //   const currentLocation = window.location.pathname;
+    //   if (
+    //     currentLocation !== "/login" &&
+    //     currentLocation !== "/login/local" &&
+    //     currentLocation !== "/register" &&
+    //     currentLocation !== "/register/terms"
+    //   ) {
+    //     console.error(
+    //       "[axios intercepter] 401 Unauthorized access, 로그인 페이지로 이동합니다."
+    //     );
+    //     window.location.href = "/login";
+    //   }
+    // }
     return Promise.reject(error);
   }
 );

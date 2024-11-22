@@ -41,7 +41,7 @@ const MainPageCarousel = () => {
   };
 
   return (
-    <div className="mx-[1.88rem] mb-6 mt-6 overflow-hidden rounded-lg shadow-lg h-60 group">
+    <div className="mx-[1.88rem] relative mb-6 mt-6 overflow-hidden rounded-lg shadow-lg h-60 group">
       <div
         className="flex h-full transition-transform duration-500"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}

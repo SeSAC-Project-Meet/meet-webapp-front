@@ -18,8 +18,10 @@ import { MeetroomPage } from "./pages/meet/MeetroomPage";
 import { SetSpecificProfilePage } from "./components/register/SetSpecificProfilePage";
 import KakaoMapPage from "./components/location/NaverMap.jsx";
 import { TestPage } from "./pages/TestPage.jsx";
-import { LayoutPage } from "./components/LayoutPage.jsx";
+import { SearchHeaderLayoutPage } from "./components/layouts/SearchHeaderLayoutPage.jsx";
 import { ContestSpecificsPage } from "./pages/ContestSpecificsPage.jsx";
+import { MyPage } from "./pages/MyPage.jsx";
+import { PageHeaderLayoutPage } from "./components/layouts/PageHeaderLayoutPage.jsx";
 
 function App() {
   return (
@@ -30,17 +32,25 @@ function App() {
           <Route
             path="/test"
             element={
-              <LayoutPage>
+              <SearchHeaderLayoutPage>
                 <TestPage />
-              </LayoutPage>
+              </SearchHeaderLayoutPage>
             }
           />
           <Route
             path="/contest/:contestId"
             element={
-              <LayoutPage>
+              <SearchHeaderLayoutPage>
                 <ContestSpecificsPage />
-              </LayoutPage>
+              </SearchHeaderLayoutPage>
+            }
+          />
+          <Route
+            path="/mypage"
+            element={
+              <PageHeaderLayoutPage>
+                <MyPage />
+              </PageHeaderLayoutPage>
             }
           />
 

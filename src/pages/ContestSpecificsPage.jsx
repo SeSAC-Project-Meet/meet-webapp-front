@@ -16,8 +16,8 @@ export const ContestSpecificsPage = () => {
     thumbnail: "https://picsum.photos/id/1011/400/400.jpg",
     title: "공모전 1",
     subtitle: "공모전 1에 대한 상세 설명입니다.",
-    application_period: "2021.10.01 ~ 2021.10.31",
-    participation_period: "2021.11.01 ~ 2021.11.30",
+    application_period: "2021. 10. 01 ~ 2021. 10. 31",
+    participation_period: "2021. 11. 01 ~ 2021. 11. 30",
     location: "온라인",
     details:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum blandit tincidunt lorem, vel efficitur erat rhoncus et. Donec commodo, massa in dignissim sagittis, est odio porttitor metus, in pharetra ligula nisl sed dolor. Nunc et orci egestas, ultrices orci vel, ornare velit. Fusce posuere ac elit vulputate vulputate. Donec ut tempus risus. Morbi eget sollicitudin ex. Donec sit amet neque non diam eleifend ultrices. Morbi consequat rutrum erat, et interdum lectus maximus sed. Cras magna tellus, gravida vel metus et, ornare fermentum leo. Curabitur vitae aliquet tellus, eu hendrerit lectus. Pellentesque egestas congue libero, in pharetra mi ultrices in.",

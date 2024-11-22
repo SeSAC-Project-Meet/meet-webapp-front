@@ -8,6 +8,7 @@ import { CustomSubmitButton } from "../../components/CustomSubmitButton.jsx";
 import { CustomPwFieldWithCheck } from "../../components/CustomPwFieldWithCheck.jsx";
 import useFormattedPhoneNumber from "../../hooks/useFormattedPhoneNumber.jsx";
 import MainLogo from "../../components/login/MainLogo.jsx";
+import { VerticalLine } from "../../components/VerticalLine.jsx";
 
 export const LocalLoginPage = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -71,7 +72,10 @@ export const LocalLoginPage = () => {
             >
               아이디 찾기
             </button>
-            <span className="text-text-secondary">|</span>
+
+            {/* | 표시 */}
+            <VerticalLine />
+
             <button
               type="button"
               className="hover:underline"
@@ -81,7 +85,10 @@ export const LocalLoginPage = () => {
             >
               비밀번호 찾기
             </button>
-            <span className="text-text-secondary">|</span>
+
+            {/* | 표시 */}
+            <VerticalLine />
+
             <button
               type="button"
               className="hover:underline"
