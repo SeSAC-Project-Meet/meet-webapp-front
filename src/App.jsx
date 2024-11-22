@@ -23,6 +23,8 @@ import { ContestSpecificsPage } from "./pages/ContestSpecificsPage.jsx";
 import { MyPage } from "./pages/MyPage.jsx";
 import { PageHeaderLayoutPage } from "./components/layouts/PageHeaderLayoutPage.jsx";
 import { StudyroomPage } from "./pages/StudyroomPage.jsx";
+import { NewLoginPage } from "./pages/NewLoginPage.jsx";
+import { NewRegisterPage } from "./pages/NewRegisterPage.jsx";
 
 function App() {
   return (
@@ -35,6 +37,22 @@ function App() {
             element={
               <SearchHeaderLayoutPage>
                 <TestPage />
+              </SearchHeaderLayoutPage>
+            }
+          />
+          <Route
+            path="/login-v2"
+            element={
+              <SearchHeaderLayoutPage>
+                <NewLoginPage />
+              </SearchHeaderLayoutPage>
+            }
+          />
+          <Route
+            path="/register-v2"
+            element={
+              <SearchHeaderLayoutPage>
+                <NewRegisterPage />
               </SearchHeaderLayoutPage>
             }
           />

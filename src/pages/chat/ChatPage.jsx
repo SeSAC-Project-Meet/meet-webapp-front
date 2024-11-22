@@ -4,6 +4,7 @@ import io from "socket.io-client";
 import { useUser } from "../../contexts/UserContext.jsx";
 import { SOCKET_URL } from "../../api/config.js";
 import { isUserInChatroom } from "../../api/services/isUserInChatroom.js";
+import { LoadingSpinner } from "../../components/icons/LoadingSpinner.jsx";
 
 export const ChatPage = () => {
   const { chatroomId } = useParams();
@@ -71,7 +72,7 @@ export const ChatPage = () => {
           setMessages((prevMessages) => [...prevMessages, message]);
         });
 
-        socket.on("userJoinn", (message) => {
+        socket.on("userJoin", (message) => {
           console.log("[Socket: userJoin] User Joined: ", message);
         });
 
@@ -135,12 +136,16 @@ export const ChatPage = () => {
 
   return (
     <div>
-      {!loading && (
-        <div className="flex flex-col h-screen bg-white">
+      {loading ? (
+        <div className="flex items-center justify-center h-[80vh]">
+          <LoadingSpinner />
+        </div>
+      ) : (
+        <div className="flex flex-col bg-white">
           {/* 헤더 */}
-          <div className="border-b border-gray-200 px-4 py-3 flex items-center">
+          <div className="flex items-center px-4 py-3 border-b border-gray-200">
             <div className="flex items-center flex-1">
-              <div className="w-8 h-8 rounded-full bg-gray-200 mr-3">
+              <div className="w-8 h-8 mr-3 bg-gray-200 rounded-full">
                 {/* 채팅방 이미지를 넣어야 합니다
                 1ㄷ1 채팅의 경우 상대방 이미지를,
                 그룹 채팅의 경우 따로 처리하는 로직까지만 */}
@@ -149,14 +154,14 @@ export const ChatPage = () => {
             </div>
             <button
               onClick={handleLeaveChatroom}
-              className="text-red-500 hover:text-red-600 transition"
+              className="text-red-500 transition hover:text-red-600"
             >
               나가기
             </button>
           </div>
 
           {/* 메시지 영역 */}
-          <div className="flex-1 overflow-y-auto px-4 py-2 space-y-2">
+          <div className="flex-1 px-4 py-2 space-y-2 overflow-y-auto">
             {messages.length > 0 ? (
               messages.map((message, index) => (
                 <div
@@ -168,7 +173,7 @@ export const ChatPage = () => {
                   }`}
                 >
                   {message.user_id !== user.user_id && (
-                    <div className="w-6 h-6 rounded-full bg-gray-200 mr-2 flex-shrink-0 self-end"></div>
+                    <div className="self-end flex-shrink-0 w-6 h-6 mr-2 bg-gray-200 rounded-full"></div>
                   )}
                   <div
                     className={`max-w-[60%] rounded-2xl px-4 py-2 ${
@@ -189,7 +194,7 @@ export const ChatPage = () => {
                 </div>
               ))
             ) : (
-              <p className="text-center text-gray-400 py-4">
+              <p className="py-4 text-center text-gray-400">
                 메시지가 없습니다.
               </p>
             )}
@@ -202,15 +207,15 @@ export const ChatPage = () => {
               e.preventDefault();
               handleSendMessage();
             }}
-            className="border-t border-gray-200 p-4"
+            className="p-4 border-t border-gray-200"
           >
-            <div className="flex items-center bg-gray-100 rounded-full px-4 py-2">
+            <div className="flex items-center px-4 py-2 bg-gray-100 rounded-full">
               <input
                 type="text"
                 value={newMessage}
                 onChange={(e) => setNewMessage(e.target.value)}
                 placeholder="메시지 보내기..."
-                className="flex-1 bg-transparent outline-none text-sm"
+                className="flex-1 text-sm bg-transparent outline-none"
               />
               <button
                 type="submit"

@@ -15,7 +15,7 @@ export const SearchHeader = () => {
   };
 
   return (
-    <div className="flex flex-row items-center w-full h-24 bg-transparent">
+    <div className="flex flex-row items-center w-full h-24 bg-white">
       {/* 헤더 로고 */}
       <div className="px-[1.88rem] py-[2rem] bg-transparent">
         <HeaderBrandLogo />

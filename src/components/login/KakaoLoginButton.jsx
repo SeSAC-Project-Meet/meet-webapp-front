@@ -1,6 +1,7 @@
 import { handleKakaoLogin } from "../../api/auth/user/handleKakaoLogin.js";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../contexts/UserContext.jsx";
+import { KakaoLogo } from "../icons/KakaoLogo.jsx";
 
 export function KakaoLoginButton() {
   const navigate = useNavigate();
@@ -32,13 +33,11 @@ export function KakaoLoginButton() {
     <button
       type="button"
       onClick={handleKakaoLoginClick}
-      className="w-full shadow-md flex px-4 py-2 items-center justify-center text-text-primary bg-[#fee500] rounded-md hover:bg-yellow-400" // 색상 변경
+      className="w-full flex px-4 py-3 items-center justify-center text-[#191919] bg-[#fee500] rounded-md" // 색상 변경
     >
-      <div className="w-6 h-6 mr-3">
-        <img src="/images/kakaoLoginButton.svg" />
-      </div>
-      <div className="text-center text-black text-[15px] font-['Apple SD Gothic Neo'] leading-snug">
-        카카오톡으로 시작하기
+      <KakaoLogo />
+      <div className="ml-4 text-xl text-center text-black font-basic">
+        카카오로 시작하기
       </div>
     </button>
   );

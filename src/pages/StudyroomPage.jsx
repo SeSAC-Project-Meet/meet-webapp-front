@@ -1,5 +1,6 @@
 import { StudyroomInfo } from "../components/studyroom/StudyroomInfo";
 import { CalendarForStudyroom } from "../components/studyroom/CalendarForStudyroom";
+import { ChatroomForStudyroom } from "../components/studyroom/ChatroomForStudyroom";
 
 export const StudyroomPage = () => {
   return (
@@ -9,7 +10,8 @@ export const StudyroomPage = () => {
         {/* 하단 캘린더 */}
         <CalendarForStudyroom />
       </div>
-      <div className="flex-grow">채팅방 들어올 자리</div>
+      <div className="w-px mx-8 bg-[#7b7b7b]"></div>
+      <ChatroomForStudyroom />
     </div>
   );
 };

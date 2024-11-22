@@ -18,7 +18,7 @@ export const CalendarForStudyroom = () => {
     <div className="mt-8 overflow-y-auto ml-7">
       {/* 요일 헤더 */}
       <div className="grid items-center grid-cols-8 gap-2 font-normal tracking-tight text-center justify-items-center">
-        <div>Week</div>
+        <span className="text-center">Week</span>
         {daysOfWeek.map((day) => {
           const isToday =
             format(day, "yyyy-MM-dd") === format(new Date(), "yyyy-MM-dd");
@@ -46,10 +46,10 @@ export const CalendarForStudyroom = () => {
         })}
       </div>
 
-      <div className="flex flex-col items-center justify-between h-[30rem] mt-4 space-y-2 overflow-y-auto">
+      <div className="flex flex-col h-[30rem] items-center justify-between mt-4 space-y-2 overflow-y-auto">
         {hours.map((hour, index) => (
           <div className="grid w-full grid-cols-8" key={index}>
-            <span className="text-center">{hour}</span>
+            <span className="mr-2 text-center font-pretendard ">{hour}</span>
             {/* 요일별 시간 셀 */}
             {Array.from({ length: 7 }, (_, dayIndex) => (
               <div

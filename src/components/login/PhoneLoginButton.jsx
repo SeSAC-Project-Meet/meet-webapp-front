@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { PhoneLoginLogo } from "../icons/PhoneLoginLogo";
 
 export function PhoneLoginButton() {
   const navigate = useNavigate();
@@ -8,13 +9,11 @@ export function PhoneLoginButton() {
   return (
     <button
       type="button"
-      className="shadow-md w-full flex px-4 py-2 items-center justify-center text-text-primary bg-white rounded-md hover:bg-gray-100" // 색상 변경
+      className="flex items-center justify-center w-full px-4 py-3 text-black bg-white border border-black rounded-xl" // 색상 변경
       onClick={handlePhoneLogin}
     >
-      <div className="w-6 h-6 mr-4">
-        <img src="/images/phoneLoginButton.svg" />
-      </div>
-      <div className="text-center text-black text-[15px] font-['Apple SD Gothic Neo'] leading-snug">
+      <PhoneLoginLogo />
+      <div className="ml-4 text-xl text-center text-black font-basic">
         전화번호로 시작하기
       </div>
     </button>
