@@ -4,12 +4,11 @@ const CheckBox = ({ isChecked, setIsChecked }) => {
   };
 
   return (
-    <div onClick={handleToggle} style={{ cursor: "pointer" }}>
+    <div onClick={handleToggle} className="cursor-pointer">
       <img
         src={isChecked ? "/icons/check-true.svg" : "/icons/check-false.svg"}
         alt={isChecked ? "check-true" : "check-false"}
-        className="transition-transform duration-300 ease-in-out transform hover:scale-105"
-        style={{ width: "40px", height: "40px" }} // 원하는 크기로 조정
+        className="transition-transform duration-300 ease-in-out transform h-9 hover:scale-105"
       />
     </div>
   );

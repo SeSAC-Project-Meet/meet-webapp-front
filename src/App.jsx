@@ -25,6 +25,7 @@ import { PageHeaderLayoutPage } from "./components/layouts/PageHeaderLayoutPage.
 import { StudyroomPage } from "./pages/StudyroomPage.jsx";
 import { NewLoginPage } from "./pages/NewLoginPage.jsx";
 import { NewRegisterPage } from "./pages/NewRegisterPage.jsx";
+import { NewTermsAgreePage } from "./pages/NewTermsAgreePage.jsx";
 
 function App() {
   return (
@@ -53,6 +54,14 @@ function App() {
             element={
               <SearchHeaderLayoutPage>
                 <NewRegisterPage />
+              </SearchHeaderLayoutPage>
+            }
+          />
+          <Route
+            path="/register-v2/terms"
+            element={
+              <SearchHeaderLayoutPage>
+                <NewTermsAgreePage />
               </SearchHeaderLayoutPage>
             }
           />

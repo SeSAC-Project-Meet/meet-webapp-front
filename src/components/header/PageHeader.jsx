@@ -3,10 +3,11 @@ import { useUser } from "../../contexts/UserContext";
 import { HeaderBrandLogo } from "./HeaderBrandLogo";
 import { LoggedInUserAndIcons } from "./LoggedInUserAndIcons";
 import { LoginAndRegister } from "./LoginAndRegister";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const PageHeader = () => {
   const { user } = useUser();
+  const navigate = useNavigate();
 
   const location = useLocation();
   const getPageTitle = () => {
@@ -15,10 +16,18 @@ export const PageHeader = () => {
     else return "여기 어떻게 들어왔어요;;";
   };
 
+  const handleLogoClick = () => {
+    console.log("[PageHeader] 로고를 클릭해서 메인으로 이동합니다.");
+    navigate("/test");
+  };
+
   return (
     <div className="flex flex-row items-center w-full h-24 bg-transparent">
       {/* 헤더 로고 */}
-      <div className="ml-[1.88rem] py-[2rem] bg-transparent">
+      <div
+        className="ml-[1.88rem] py-[2rem] bg-transparent"
+        onClick={handleLogoClick}
+      >
         <HeaderBrandLogo />
       </div>
 

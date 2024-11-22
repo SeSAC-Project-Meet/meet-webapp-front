@@ -4,20 +4,30 @@ import { SearchIcon } from "../icons/SearchIcon";
 import { LoggedInUserAndIcons } from "./LoggedInUserAndIcons";
 import { LoginAndRegister } from "./LoginAndRegister";
 import { HeaderBrandLogo } from "./HeaderBrandLogo";
+import { useNavigate } from "react-router-dom";
 
 export const SearchHeader = () => {
   const { user } = useUser();
   const [searchField, setSearchField] = useState("");
+  const navigate = useNavigate();
   console.log(`[SearchHeader] user $: ${JSON.stringify(user, null, 2)}`);
 
   const handleHeaderSearch = () => {
     alert(`[구현되지 않은 기능] 검색어 : ${searchField}`);
   };
 
+  const handleLogoClick = () => {
+    console.log("[PageHeader] 로고를 클릭해서 메인으로 이동합니다.");
+    navigate("/test");
+  };
+
   return (
     <div className="flex flex-row items-center w-full h-24 bg-white">
       {/* 헤더 로고 */}
-      <div className="px-[1.88rem] py-[2rem] bg-transparent">
+      <div
+        className="px-[1.88rem] py-[2rem] bg-transparent"
+        onClick={handleLogoClick}
+      >
         <HeaderBrandLogo />
       </div>
 
