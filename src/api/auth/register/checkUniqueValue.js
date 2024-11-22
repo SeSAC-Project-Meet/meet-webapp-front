@@ -15,8 +15,10 @@ export const checkUniqueValue = async (type, value) => {
       return true;
     }
   } catch (error) {
-    if (error.response.status === 409) {
-      return false;
+    if (error?.response) {
+      if (error.response.status === 409) {
+        return false;
+      }
     }
     console.error(
       "Error fetching user profile:",

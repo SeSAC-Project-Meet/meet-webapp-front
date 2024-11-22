@@ -144,7 +144,7 @@ export const NewRegisterPage = () => {
               (!isValidEmail
                 ? "유효한 이메일 주소를 입력해주세요."
                 : !isUniqueEmail
-                  ? "이미 가입된 전화번호 입니다."
+                  ? "이미 가입된 이메일 입니다."
                   : "")}
           </span>
 
