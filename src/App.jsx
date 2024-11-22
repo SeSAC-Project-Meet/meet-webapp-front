@@ -22,6 +22,7 @@ import { SearchHeaderLayoutPage } from "./components/layouts/SearchHeaderLayoutP
 import { ContestSpecificsPage } from "./pages/ContestSpecificsPage.jsx";
 import { MyPage } from "./pages/MyPage.jsx";
 import { PageHeaderLayoutPage } from "./components/layouts/PageHeaderLayoutPage.jsx";
+import { StudyroomPage } from "./pages/StudyroomPage.jsx";
 
 function App() {
   return (
@@ -50,6 +51,14 @@ function App() {
             element={
               <PageHeaderLayoutPage>
                 <MyPage />
+              </PageHeaderLayoutPage>
+            }
+          />
+          <Route
+            path="/studyroom/:studyroomId"
+            element={
+              <PageHeaderLayoutPage>
+                <StudyroomPage />
               </PageHeaderLayoutPage>
             }
           />

@@ -45,7 +45,7 @@ export const MyPageEditUserInfo = () => {
         </div>
       </div>
 
-      {/* 경력사항 */}
+      {/* 경력사항 -- TODO: 더보기 생겨야 하고 개수제한 적용해야 함*/}
       <div className="ml-28">
         <div className="inline-block mb-4 text-2xl font-normal border-b border-black font-pretendard">
           경력사항
