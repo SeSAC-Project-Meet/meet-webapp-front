@@ -18,7 +18,7 @@ export const PageHeader = () => {
 
   const handleLogoClick = () => {
     console.log("[PageHeader] 로고를 클릭해서 메인으로 이동합니다.");
-    navigate("/test");
+    navigate("/");
   };
 
   return (

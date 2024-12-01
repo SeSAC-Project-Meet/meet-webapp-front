@@ -20,7 +20,7 @@ export function KakaoLoginButton() {
         // 로그인 실패
         console.log("[kakao-login] Unregistered user : ", user.user);
         // 회원가입 페이지로 리다이렉트
-        navigate("/register-v2/terms", {
+        navigate("/register/terms", {
           state: { type: "kakao", user: user.user.email },
         });
       }

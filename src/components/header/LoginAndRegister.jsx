@@ -22,6 +22,7 @@ export const LoginAndRegister = () => {
       </button>
       {/* | 표시 */}
       <VerticalLine />
+      {/* 회원가입 버튼 */}
       <button
         className="text-[#3d3d3d] font-basic font-medium text-xl tracking-tight"
         onClick={handleRegisterButtonClick}

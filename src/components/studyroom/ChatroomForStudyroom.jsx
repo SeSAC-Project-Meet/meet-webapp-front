@@ -5,7 +5,7 @@ import { ChatInsideStudyroom } from "./ChatInsideStudyroom";
 
 export const ChatroomForStudyroom = () => {
   const chatroom = {
-    name: "스터디룸 채팅방",
+    name: "We Are One",
   };
   const { studyroomId } = useParams();
 

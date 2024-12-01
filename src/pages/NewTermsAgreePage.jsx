@@ -66,7 +66,7 @@ export const NewTermsAgreePage = () => {
   const handleContinueRegister = () => {
     console.log("동의한 약관 : ", agreeTerms);
     console.log("[약관동의페이지] 전달하는 state : ", prevState);
-    navigate("/register-v2", { state: { email: prevState, agreeTerms } });
+    navigate("/register", { state: { email: prevState, agreeTerms } });
   };
 
   return (

@@ -3,7 +3,7 @@ import { TodoListForStudyroom } from "./TodoListForStudyroom";
 export const StudyroomInfo = () => {
   const studyroom = {
     image: "https://picsum.photos/200/300",
-    title: "신나게놀아보아요",
+    title: "살려줘요 강사님",
     description: "스터디룸 설명",
   };
   return (

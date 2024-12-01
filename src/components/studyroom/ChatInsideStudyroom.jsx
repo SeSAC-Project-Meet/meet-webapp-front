@@ -13,21 +13,41 @@ export const ChatInsideStudyroom = ({ studyroomId }) => {
   // const { user } = useUser();
   const user = {
     id: 1,
-    name: "user1",
+    name: "경운",
   };
   useEffect(() => {
     const fetchMessages = async () => {
       try {
         // 채팅방 메시지를 가져오는 API 호출
         const data = [
-          { id: 1, sender_id: 1, sender_name: "user1", message: "안녕하세요" },
-          { id: 2, sender_id: 2, sender_name: "user2", message: "안녕하세요" },
-          { id: 3, sender_id: 1, sender_name: "user1", message: "안녕하세요" },
-          { id: 4, sender_id: 2, sender_name: "user2", message: "안녕하세요" },
-          { id: 5, sender_id: 1, sender_name: "user1", message: "안녕하세요" },
-          { id: 6, sender_id: 2, sender_name: "user2", message: "안녕하세요" },
-          { id: 7, sender_id: 1, sender_name: "user1", message: "안녕하세요" },
-          { id: 8, sender_id: 2, sender_name: "user2", message: "안녕하세요" },
+          { id: 1, sender_id: 1, sender_name: "경운", message: "안녕하세요" },
+          {
+            id: 2,
+            sender_id: 2,
+            sender_name: "Count on You",
+            message: "싫어요",
+          },
+          {
+            id: 3,
+            sender_id: 1,
+            sender_name: "경운",
+            message: "반가워요 ,,,,",
+          },
+          {
+            id: 4,
+            sender_id: 2,
+            sender_name: "Count on You",
+            message: "저리가요",
+          },
+          { id: 5, sender_id: 1, sender_name: "경운", message: "앗 ,," },
+          {
+            id: 6,
+            sender_id: 2,
+            sender_name: "Count on You",
+            message: "인- 수 님 !!",
+          },
+          { id: 7, sender_id: 1, sender_name: "경운", message: "새싹 화이팅" },
+          { id: 8, sender_id: 2, sender_name: "Count on You", message: "네.." },
         ];
         setMessages(data);
         setLoading(false);

@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { LoginPage } from "./pages/login/LoginPage.jsx";
 import { RegisterPage } from "./components/register/RegisterPage";
 import { UserProvider } from "./contexts/UserContext";
-import { MainPage } from "./pages/MainPage.jsx";
+import { FeatureTestPage } from "./pages/FeatureTestPage.jsx";
 import { LocalLoginPage } from "./pages/login/LocalLoginPage.jsx";
 import { ResetPasswordPage } from "./pages/lostandfound/ResetPasswordPage";
 import { FindIdPage } from "./pages/lostandfound/FindIdPage";
@@ -17,7 +17,7 @@ import { MeetPage } from "./pages/meet/MeetPage";
 import { MeetroomPage } from "./pages/meet/MeetroomPage";
 import { SetSpecificProfilePage } from "./components/register/SetSpecificProfilePage";
 import KakaoMapPage from "./components/location/NaverMap.jsx";
-import { TestPage } from "./pages/TestPage.jsx";
+import { MainPage } from "./pages/MainPage.jsx";
 import { SearchHeaderLayoutPage } from "./components/layouts/SearchHeaderLayoutPage.jsx";
 import { ContestSpecificsPage } from "./pages/ContestSpecificsPage.jsx";
 import { MyPage } from "./pages/MyPage.jsx";
@@ -34,15 +34,15 @@ function App() {
         <Routes>
           <Route path="*" element={<NotFoundPage />} />
           <Route
-            path="/test"
+            path="/"
             element={
               <SearchHeaderLayoutPage>
-                <TestPage />
+                <MainPage />
               </SearchHeaderLayoutPage>
             }
           />
           <Route
-            path="/login-v2"
+            path="/login"
             element={
               <SearchHeaderLayoutPage>
                 <NewLoginPage />
@@ -50,7 +50,7 @@ function App() {
             }
           />
           <Route
-            path="/register-v2"
+            path="/register"
             element={
               <SearchHeaderLayoutPage>
                 <NewRegisterPage />
@@ -58,7 +58,7 @@ function App() {
             }
           />
           <Route
-            path="/register-v2/terms"
+            path="/register/terms"
             element={
               <SearchHeaderLayoutPage>
                 <NewTermsAgreePage />
@@ -90,16 +90,12 @@ function App() {
             }
           />
 
-          <Route path="/" element={<MainPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/register/terms" element={<TermsPage />} />
+          <Route path="/test" element={<FeatureTestPage />} />
           <Route path="/email-check" element={<EmailCheckNonUser />} />
           <Route
             path="/register/specific"
             element={<SetSpecificProfilePage />}
           />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/login/local" element={<LocalLoginPage />} />
           <Route path="/find/id" element={<FindIdPage />} />
           <Route path="/find/pw" element={<ResetPasswordPage />} />
           <Route path="/chat" element={<ChatListPage />} />
